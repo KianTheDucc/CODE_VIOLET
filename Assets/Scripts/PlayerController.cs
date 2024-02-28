@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsEnemy;
 
     private Rigidbody2D rb;
-    public Rigidbody2D muggerBody;
+    public Rigidbody2D PlayerBody;
 
-    public SpriteRenderer Mugger;
+    public SpriteRenderer Player;
 
     private bool hasJumped = false;
 
@@ -82,11 +82,11 @@ public class PlayerController : MonoBehaviour
 
         if (xDir == -1)
         {
-            Mugger.flipX = true;
+            Player.flipX = true;
         }
         else if (xDir == 1)
         {
-            Mugger.flipX = false;
+            Player.flipX = false;
         }
 
     }
@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     //        DamagePlayer(10);
 
     //        Vector2 force = new Vector2(1 * ((knockbackForce * 10) * Time.deltaTime), 0 * (knockbackForce * Time.deltaTime));
-    //        muggerBody.AddForce(force, ForceMode2D.Impulse);
+    //        PlayerBody.AddForce(force, ForceMode2D.Impulse);
     //    }
 
     //    else if (hit2)
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
     //        Debug.Log("Hit! Right");
     //        DamagePlayer(10);
     //        Vector2 force = new Vector2(knockbackForce * 10 * Time.deltaTime, knockbackForce * Time.deltaTime);
-    //        muggerBody.AddForce(force, ForceMode2D.Impulse);
+    //        PlayerBody.AddForce(force, ForceMode2D.Impulse);
     //    }
     //}
 }

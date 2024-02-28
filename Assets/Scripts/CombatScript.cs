@@ -7,7 +7,6 @@ public class CombatScript : MonoBehaviour
     public int curHealth = 0;
     public int MaxHealth = 100;
     public GameObject entity;
-    GameObject mugger;
     // Start is called before the first frame update
     void Start()
     {
