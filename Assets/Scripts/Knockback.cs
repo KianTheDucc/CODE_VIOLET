@@ -50,7 +50,7 @@ public class KnockbackWorking : MonoBehaviour
         Debug.Log("Knocking back");
 
 
-        Vector2 direction = new Vector2(xdir, 1);
+        Vector2 direction = new Vector2(xdir, 2);
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * wallJumpForce, ForceMode2D.Impulse);
 

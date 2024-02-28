@@ -12,9 +12,12 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 100f)] public float groundcastDistance = 1.5f;
     [Space(5)]
     [Range(0f, 100f)] public float kbcastDistance = 1.5f;
+    [Space(5)]
+    [Range(0f, 100f)] public float WJcastDistance = 1.5f;
 
     public LayerMask whatIsGround;
     public LayerMask whatIsEnemy;
+    public LayerMask whatIsWall;
 
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
@@ -43,8 +46,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
         {
-            hasJumped = false;
-            GetComponent<KnockbackWorking>().hasWallJumped = false;
+
         }
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
@@ -66,6 +68,12 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         float xDir = Input.GetAxisRaw("Horizontal");
+
+        if (IsGrounded())
+        {
+            hasJumped = false;
+            GetComponent<KnockbackWorking>().hasWallJumped = false;
+        }
 
         if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack)
         {
@@ -93,7 +101,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Space))
         {
 
             if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
@@ -147,12 +155,12 @@ public class PlayerController : MonoBehaviour
 
     public bool IsAgainstWallLeft()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, groundcastDistance, whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, WJcastDistance, whatIsWall);
         return hit.collider != null;
     }
     public bool IsAgainstWallRight()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, groundcastDistance, whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, WJcastDistance, whatIsWall);
         return hit.collider != null;
     }
     public bool IsAgainstEnemyRight()
