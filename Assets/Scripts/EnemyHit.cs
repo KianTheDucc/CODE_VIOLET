@@ -20,6 +20,6 @@ public class NewBehaviourScript : MonoBehaviour
     {
         HitBox.SetActive(true);
         //wait time amount
-        AttackSprite.Color = new Color(1f, 0f, 0f, 1f);
+        AttackSprite.color = new Color(1f, 0f, 0f, 1f);
     }
 }
