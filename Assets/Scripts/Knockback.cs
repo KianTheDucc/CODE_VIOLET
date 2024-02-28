@@ -10,6 +10,7 @@ public class KnockbackWorking : MonoBehaviour
     public float wallJumpTime = 0.2f;
     private float knockbackTimer; // Timer for the knockback duration
     public bool isKnockedBack = false; // Flag to indicate whether the object is currently being knocked back
+    public bool hasWallJumped = false;
 
     private Rigidbody2D rb; // The rigidbody component of the object
 
@@ -52,7 +53,8 @@ public class KnockbackWorking : MonoBehaviour
         Vector2 direction = new Vector2(xdir, 1);
         rb.velocity = Vector2.zero;
         rb.AddForce(direction * wallJumpForce, ForceMode2D.Impulse);
-        isKnockedBack = true;
+
+        hasWallJumped = true;
         knockbackTimer = wallJumpTime;
     }
 }

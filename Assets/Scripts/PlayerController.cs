@@ -95,24 +95,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
 
-            if (IsGrounded() && !hasJumped)
+            if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
+                GetComponent<KnockbackWorking>().hasWallJumped = true;
 
             }
-            else if (IsAgainstWallLeft() && !hasJumped)
+            else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 GetComponent<KnockbackWorking>().ApplyWallJump(1);
                 hasJumped = true;
+                GetComponent<KnockbackWorking>().hasWallJumped = true;
 
             }
-            else if (IsAgainstWallRight() && !hasJumped)
+            else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 GetComponent<KnockbackWorking>().ApplyWallJump(-1);
                 hasJumped = true;
+                GetComponent<KnockbackWorking>().hasWallJumped = true;
             }
         }
 
