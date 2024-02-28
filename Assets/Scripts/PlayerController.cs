@@ -26,7 +26,11 @@ public class PlayerController : MonoBehaviour
 
     public bool hasJumped = false;
 
+    public bool canDash;
+
     public float knockbackForce = 10f;
+
+    public float dashSpeed;
 
 
     private void Start()
@@ -84,8 +88,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
         }
-
-
+        else if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && Input.GetKey(KeyCode.LeftShift) && canDash)
+        {
+            rb.velocity = new Vector2(xDir * ((movementforce * dashSpeed) * Time.deltaTime), rb.velocity.y);
+            StartCoroutine(canDashInterval());
+        }
         if (xDir == -1)
         {
             Player.flipX = true;
@@ -96,6 +103,18 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public IEnumerator canDashInterval()
+    {
+        canDash = false;
+        
+        yield return new WaitForSeconds(5);
+        
+        canDash = true;
+
+
+    }
+
     private void Jump()
     {
         if (Input.GetKey(KeyCode.Space))
