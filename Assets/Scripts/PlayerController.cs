@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer Player;
 
-    private bool hasJumped = false;
+    public bool hasJumped = false;
 
     public float knockbackForce = 10f;
 
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
         {
             hasJumped = false;
+            GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
@@ -99,10 +100,18 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
-                GetComponent<KnockbackWorking>().hasWallJumped = true;
+                //GetComponent<KnockbackWorking>().hasWallJumped = true;
 
             }
             else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                //GetComponent<KnockbackWorking>().ApplyWallJump(1);
+                hasJumped = true;
+                //GetComponent<KnockbackWorking>().hasWallJumped = true;
+
+            }
+            else if (IsAgainstWallLeft() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 GetComponent<KnockbackWorking>().ApplyWallJump(1);
@@ -111,6 +120,13 @@ public class PlayerController : MonoBehaviour
 
             }
             else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                //GetComponent<KnockbackWorking>().ApplyWallJump(-1);
+                hasJumped = true;
+                //GetComponent<KnockbackWorking>().hasWallJumped = true;
+            }
+            else if (IsAgainstWallRight() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 GetComponent<KnockbackWorking>().ApplyWallJump(-1);
@@ -128,6 +144,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundcastDistance, whatIsGround);
         return hit.collider != null;
     }
+
     public bool IsAgainstWallLeft()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, groundcastDistance, whatIsGround);
