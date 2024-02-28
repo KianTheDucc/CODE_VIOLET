@@ -44,10 +44,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.W))
-        {
 
-        }
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
         {
@@ -198,25 +195,4 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    //private void Knockback()
-    //{
-    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, kbcastDistance, whatIsEnemy);
-    //    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.right, kbcastDistance, whatIsEnemy);
-    //    if (hit)
-    //    {
-    //        Debug.Log("Hit! Left");
-    //        DamagePlayer(10);
-
-    //        Vector2 force = new Vector2(1 * ((knockbackForce * 10) * Time.deltaTime), 0 * (knockbackForce * Time.deltaTime));
-    //        PlayerBody.AddForce(force, ForceMode2D.Impulse);
-    //    }
-
-    //    else if (hit2)
-    //    {
-    //        Debug.Log("Hit! Right");
-    //        DamagePlayer(10);
-    //        Vector2 force = new Vector2(knockbackForce * 10 * Time.deltaTime, knockbackForce * Time.deltaTime);
-    //        PlayerBody.AddForce(force, ForceMode2D.Impulse);
-    //    }
-    //}
 }
