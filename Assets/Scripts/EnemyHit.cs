@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyHitScript : MonoBehaviour
 {
     public GameObject HitBox;
     public BoxCollider2D Alert;

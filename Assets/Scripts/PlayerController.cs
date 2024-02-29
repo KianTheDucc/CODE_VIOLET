@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     public LayerMask whatIsEnemy;
     public LayerMask whatIsWall;
+    public LayerMask whatIsWJW;
 
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
@@ -26,11 +28,20 @@ public class PlayerController : MonoBehaviour
 
     public bool hasJumped = false;
 
-    public bool canDash;
+    public bool canDash = true;
 
     public float knockbackForce = 10f;
 
     public float dashSpeed;
+
+    public float gravity;
+
+    public float dashTime;
+
+    public float dashCooldown;
+
+    public float WallJumpCooldown;
+    public bool canWallJump = true;
 
 
     private void Start()
@@ -40,10 +51,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         Movement();
 
         Jump();
 
+        WallJump();
+
+        startDash();
     }
 
     private void Update()
@@ -76,23 +91,19 @@ public class PlayerController : MonoBehaviour
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
 
-        if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack)
+        if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack || !IsWallJumpWallLeft() && !IsWallJumpWallRight())
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
         }
-        else if (IsAgainstWallLeft() && xDir != -1)
+        else if (IsAgainstWallLeft() && xDir != -1 || IsWallJumpWallLeft() && xDir != -1)
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
         }
-        else if (IsAgainstWallRight() && xDir != 1)
+        else if (IsAgainstWallRight() && xDir != 1 || IsWallJumpWallRight() && xDir != 1)
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
         }
-        else if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && Input.GetKey(KeyCode.LeftShift) && canDash)
-        {
-            rb.velocity = new Vector2(xDir * ((movementforce * dashSpeed) * Time.deltaTime), rb.velocity.y);
-            StartCoroutine(canDashInterval());
-        }
+
         if (xDir == -1)
         {
             Player.flipX = true;
@@ -103,16 +114,28 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    private void startDash()
+    { 
+        float xDir = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButton("Dash") && canDash)
+        {
+            Debug.Log("dashing");
 
-    public IEnumerator canDashInterval()
+            StartCoroutine(Dash(xDir));
+        }
+    }
+
+
+    public IEnumerator Dash(float xDir)
     {
         canDash = false;
-        
-        yield return new WaitForSeconds(5);
-        
+
+        rb.velocity = new Vector2(xDir * (dashSpeed * Time.deltaTime), rb.velocity.y);
+
+        //yield return new WaitForSeconds(dashTime);
+
+        yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-
-
     }
 
     private void Jump()
@@ -124,15 +147,12 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
-                //GetComponent<KnockbackWorking>().hasWallJumped = true;
 
             }
             else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                //GetComponent<KnockbackWorking>().ApplyWallJump(1);
                 hasJumped = true;
-                //GetComponent<KnockbackWorking>().hasWallJumped = true;
 
             }
             else if (IsAgainstWallLeft() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
@@ -146,9 +166,7 @@ public class PlayerController : MonoBehaviour
             else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                //GetComponent<KnockbackWorking>().ApplyWallJump(-1);
                 hasJumped = true;
-                //GetComponent<KnockbackWorking>().hasWallJumped = true;
             }
             else if (IsAgainstWallRight() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
@@ -163,6 +181,35 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void WallJump()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (IsWallJumpWallLeft() && canWallJump)
+            {
+                canWallJump = false;
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                GetComponent<KnockbackWorking>().ApplyWallJump(1);
+                StartCoroutine(wallJumpCooldownTimer());
+            }
+            else if (IsWallJumpWallRight() && canWallJump)
+            {
+                canWallJump = false;
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                GetComponent<KnockbackWorking>().ApplyWallJump(1);
+                StartCoroutine(wallJumpCooldownTimer());
+            }
+        }
+    }
+
+
+    public IEnumerator wallJumpCooldownTimer()
+    {
+        yield return new WaitForSeconds(WallJumpCooldown);
+        canWallJump = true;
+    }
+
+
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundcastDistance, whatIsGround);
@@ -174,6 +221,18 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, WJcastDistance, whatIsWall);
         return hit.collider != null;
     }
+
+    public bool IsWallJumpWallLeft()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, WJcastDistance, whatIsWJW);
+        return hit.collider != null;
+    }
+    public bool IsWallJumpWallRight()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, WJcastDistance, whatIsWJW);
+        return hit.collider != null;
+    }
+
     public bool IsAgainstWallRight()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, WJcastDistance, whatIsWall);
