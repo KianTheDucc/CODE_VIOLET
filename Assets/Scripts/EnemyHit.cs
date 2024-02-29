@@ -16,10 +16,19 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        HitBox.SetActive(true);
-        //wait time amount
+        if (other.tag == "Player")
+        {
+            HitBox.SetActive(true);
+            //wait time amount
+            Invoke("EnemyAttack", 3);
+        }
+
+    }
+
+    void EnemyAttack()
+    {
         AttackSprite.color = new Color(1f, 0f, 0f, 1f);
     }
 }
