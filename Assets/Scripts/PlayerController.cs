@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float movementforce;
-    public float jumpforce;
+
 
     [Space(5)]
     [Range(0f, 100f)] public float groundcastDistance = 1.5f;
@@ -26,21 +26,36 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer Player;
 
+    public float minJumpForce;
+
+    public float jumpforce;
+
     public bool hasJumped = false;
+
+    public float jumpTime;
+
+    public float jumpMaxTime;
+
+    public float jumpMinTime;
+
+    public bool jumpCancelled;
+
+    
 
     public bool canDash = true;
 
-    public float knockbackForce = 10f;
-
     public float dashSpeed;
-
-    public float gravity;
 
     public float dashTime;
 
     public float dashCooldown;
 
+    public float knockbackForce = 10f;
+
+    public float gravity;
+
     public float WallJumpCooldown;
+
     public bool canWallJump = true;
 
 
@@ -136,6 +151,47 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void VariableJump()
+    {
+
+        if (IsGrounded())
+        {
+            jumpTime = 0;
+        }
+
+        if (rb.velocity.y < 0) 
+        {
+            rb.gravityScale = rb.gravityScale * 1.5f;
+        }
+        if (rb.velocity.y >= 0)
+        {
+            rb.gravityScale = rb.gravityScale / 1.5f;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            if (!jumpCancelled && jumpTime <= jumpMaxTime)
+            {
+
+
+                if (jumpTime < jumpMaxTime && jumpTime > jumpMinTime)
+                {
+                    rb.AddForce(new Vector2(rb.velocity.x, jumpforce * Time.deltaTime), ForceMode2D.Impulse);
+                }
+                else if (jumpCancelled && jumpTime < jumpMinTime)
+                {
+                    rb.AddForce(new Vector2(rb.velocity.x, minJumpForce), ForceMode2D.Impulse);
+                }
+                jumpTime += Time.deltaTime;
+            }
+            else
+            {
+                hasJumped = true;
+            }
+        }
     }
 
     private void Jump()
