@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         Movement();
 
-        Jump();
+        
 
         WallJump();
 
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        Jump();
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
         {
@@ -196,12 +196,17 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKey(KeyCode.Space))
+        var jumpInput = Input.GetButtonDown("Jump");
+        var jumpInputReleased = Input.GetButtonUp("Jump");
+
+
+        if (jumpInput)
         {
 
             if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                rb.AddForce(new Vector2(rb.velocity.x, jumpforce * Time.deltaTime));
+                //rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
 
             }
@@ -231,6 +236,10 @@ public class PlayerController : MonoBehaviour
                 hasJumped = true;
                 GetComponent<KnockbackWorking>().hasWallJumped = true;
             }
+        }
+        else if (jumpInputReleased && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
 
 
