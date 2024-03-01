@@ -48,11 +48,8 @@ public class KnockbackWorking : MonoBehaviour
     public void ApplyWallJump(float xdir)
     {
         Debug.Log("Knocking back");
-
-
-        Vector2 direction = new Vector2(xdir, 2);
         rb.velocity = Vector2.zero;
-        rb.AddForce(direction * wallJumpForce, ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(xdir,wallJumpForce), ForceMode2D.Impulse);
 
         hasWallJumped = true;
         knockbackTimer = wallJumpTime;

@@ -32,15 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public bool hasJumped = false;
 
-    public float jumpTime;
-
-    public float jumpMaxTime;
-
-    public float jumpMinTime;
-
-    public bool jumpCancelled;
-
-    
+    public bool jumping;
 
     public bool canDash = true;
 
@@ -58,6 +50,13 @@ public class PlayerController : MonoBehaviour
 
     public bool canWallJump = true;
 
+    public Vector2 _vecGravity;
+
+    public float InitialPlayerYHeight;
+
+    public float MaxJumpHeight;
+
+    public float MaxHeight;
 
     private void Start()
     {
@@ -107,6 +106,7 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded())
         {
+            jumping = false;
             hasJumped = false;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
@@ -173,7 +173,10 @@ public class PlayerController : MonoBehaviour
 
             if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
+                InitialPlayerYHeight = transform.position.y;
+                MaxJumpHeight = InitialPlayerYHeight + MaxHeight;
                 Debug.Log("Jump Registered");
+
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce);
                 //rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
@@ -206,7 +209,7 @@ public class PlayerController : MonoBehaviour
         //        GetComponent<KnockbackWorking>().hasWallJumped = true;
         //    }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0  || rb.velocity.y < 0)
+        else if (jumpInputReleased && rb.velocity.y > 0  || rb.velocity.y < 0 || transform.position.y > MaxJumpHeight && GetComponent<KnockbackWorking>().hasWallJumped == false)
         {
             Debug.Log("falling");
             rb.velocity = new Vector2(rb.velocity.x, 0);
