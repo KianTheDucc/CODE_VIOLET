@@ -1,34 +1,44 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Xml;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHitScript : MonoBehaviour
 {
     public GameObject HitBox;
-    public BoxCollider2D Alert;
+    public BoxCollider2D AttackBox;
     public SpriteRenderer AttackSprite;
+    private bool playerHit;
+    private bool cooldown = false;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        HitBox.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (cooldown == false)
         {
-            HitBox.SetActive(true);
-            //wait time amount
-            Invoke("EnemyAttack", 3);
+            StartCoroutine(EnemyAttack());
+        }
+        if (other.tag == "Player" && playerHit == true)
+        {
+            Debug.Log("Player Hit");
+            playerHit = false;
         }
 
     }
 
-    void EnemyAttack()
+    public IEnumerator EnemyAttack()
     {
+        cooldown = true;
+        yield return new WaitForSeconds(3);
         AttackSprite.color = new Color(1f, 0f, 0f, 1f);
+        playerHit = true;
+        yield return new WaitForSeconds(0.1f);
+        AttackSprite.color = new Color(1f, 0f, 0f, 0.5f);
+        playerHit = false;
+        AttackSprite.color = new Color(1f, 0f, 0f, 0f);
+        yield return new WaitForSeconds(3f);
+        cooldown = false;
+
     }
 }
