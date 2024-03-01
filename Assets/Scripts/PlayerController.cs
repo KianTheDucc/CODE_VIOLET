@@ -178,36 +178,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Jump Registered");
 
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce);
-                //rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
 
             }
-        //    else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-        //    {
-        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-        //        hasJumped = true;
-
-        //    }
-        //    else if (IsAgainstWallLeft() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-        //    {
-        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-        //        GetComponent<KnockbackWorking>().ApplyWallJump(1);
-        //        hasJumped = true;
-        //        GetComponent<KnockbackWorking>().hasWallJumped = true;
-
-        //    }
-        //    else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-        //    {
-        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-        //        hasJumped = true;
-        //    }
-        //    else if (IsAgainstWallRight() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-        //    {
-        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-        //        GetComponent<KnockbackWorking>().ApplyWallJump(-1);
-        //        hasJumped = true;
-        //        GetComponent<KnockbackWorking>().hasWallJumped = true;
-        //    }
         }
         else if (jumpInputReleased && rb.velocity.y > 0  || rb.velocity.y < 0 || transform.position.y > MaxJumpHeight && GetComponent<KnockbackWorking>().hasWallJumped == false)
         {
@@ -302,7 +275,6 @@ public class PlayerController : MonoBehaviour
     private void KnockbackCheck(GameObject enemy)
     {
         float xdir = 0;
-        //Vector2 direction = (transform.position - enemy.transform.position).normalized;
         Rigidbody2D enemyrb = enemy.GetComponent<Rigidbody2D>();
         if (enemyrb.rotation >= 90)
         {

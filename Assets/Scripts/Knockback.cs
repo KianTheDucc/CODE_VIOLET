@@ -47,6 +47,7 @@ public class KnockbackWorking : MonoBehaviour
     }
     public void ApplyWallJump(float xdir)
     {
+        GetComponent<PlayerController>().InitialPlayerYHeight = transform.position.y;
         Debug.Log("Knocking back");
         rb.velocity = Vector2.zero;
         rb.AddForce(new Vector2(xdir,wallJumpForce), ForceMode2D.Impulse);
