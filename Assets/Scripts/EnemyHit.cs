@@ -30,11 +30,11 @@ public class EnemyHitScript : MonoBehaviour
     public IEnumerator EnemyAttack()
     {
         cooldown = true;
+        AttackSprite.color = new Color(1f, 0f, 0f, 0.5f);
         yield return new WaitForSeconds(3);
         AttackSprite.color = new Color(1f, 0f, 0f, 1f);
         playerHit = true;
         yield return new WaitForSeconds(0.1f);
-        AttackSprite.color = new Color(1f, 0f, 0f, 0.5f);
         playerHit = false;
         AttackSprite.color = new Color(1f, 0f, 0f, 0f);
         yield return new WaitForSeconds(3f);
