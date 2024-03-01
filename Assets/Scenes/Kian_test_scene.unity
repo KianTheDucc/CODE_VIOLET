@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackForce: 10
   knockbackTime: 0.2
-  wallJumpForce: 5
+  wallJumpForce: 10
   wallJumpTime: 0.2
   isKnockedBack: 0
   hasWallJumped: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   PlayerBody: {fileID: 325758207}
   Player: {fileID: 325758204}
   minJumpForce: 0
-  jumpforce: 400
+  jumpforce: 10
   hasJumped: 0
   jumpTime: 0
   jumpMaxTime: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   dashTime: 0.3
   dashCooldown: 1
   knockbackForce: 10
-  gravity: 9.81
+  gravity: 50
   WallJumpCooldown: 0.2
   canWallJump: 1
 --- !u!61 &325758211

@@ -78,6 +78,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (IsGrounded())
+        {
+            rb.gravityScale = 1;
+        }
+        
         Jump();
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
@@ -106,17 +111,20 @@ public class PlayerController : MonoBehaviour
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
 
-        if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack || !IsWallJumpWallLeft() && !IsWallJumpWallRight())
+        if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && !IsWallJumpWallLeft() && !IsWallJumpWallRight())
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity.Normalize();
         }
         else if (IsAgainstWallLeft() && xDir != -1 || IsWallJumpWallLeft() && xDir != -1)
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity.Normalize();
         }
         else if (IsAgainstWallRight() && xDir != 1 || IsWallJumpWallRight() && xDir != 1)
         {
             rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity.Normalize();
         }
 
         if (xDir == -1)
@@ -153,46 +161,6 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
-    private void VariableJump()
-    {
-
-        if (IsGrounded())
-        {
-            jumpTime = 0;
-        }
-
-        if (rb.velocity.y < 0) 
-        {
-            rb.gravityScale = rb.gravityScale * 1.5f;
-        }
-        if (rb.velocity.y >= 0)
-        {
-            rb.gravityScale = rb.gravityScale / 1.5f;
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            if (!jumpCancelled && jumpTime <= jumpMaxTime)
-            {
-
-
-                if (jumpTime < jumpMaxTime && jumpTime > jumpMinTime)
-                {
-                    rb.AddForce(new Vector2(rb.velocity.x, jumpforce * Time.deltaTime), ForceMode2D.Impulse);
-                }
-                else if (jumpCancelled && jumpTime < jumpMinTime)
-                {
-                    rb.AddForce(new Vector2(rb.velocity.x, minJumpForce), ForceMode2D.Impulse);
-                }
-                jumpTime += Time.deltaTime;
-            }
-            else
-            {
-                hasJumped = true;
-            }
-        }
-    }
 
     private void Jump()
     {
@@ -205,65 +173,76 @@ public class PlayerController : MonoBehaviour
 
             if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
-                rb.AddForce(new Vector2(rb.velocity.x, jumpforce * Time.deltaTime));
+                Debug.Log("Jump Registered");
+                rb.velocity = new Vector2(rb.velocity.x, jumpforce);
                 //rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
                 hasJumped = true;
 
             }
-            else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                hasJumped = true;
+        //    else if (IsAgainstWallLeft() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+        //    {
+        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+        //        hasJumped = true;
 
-            }
-            else if (IsAgainstWallLeft() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                GetComponent<KnockbackWorking>().ApplyWallJump(1);
-                hasJumped = true;
-                GetComponent<KnockbackWorking>().hasWallJumped = true;
+        //    }
+        //    else if (IsAgainstWallLeft() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+        //    {
+        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+        //        GetComponent<KnockbackWorking>().ApplyWallJump(1);
+        //        hasJumped = true;
+        //        GetComponent<KnockbackWorking>().hasWallJumped = true;
 
-            }
-            else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                hasJumped = true;
-            }
-            else if (IsAgainstWallRight() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
-                GetComponent<KnockbackWorking>().ApplyWallJump(-1);
-                hasJumped = true;
-                GetComponent<KnockbackWorking>().hasWallJumped = true;
-            }
+        //    }
+        //    else if (IsAgainstWallRight() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+        //    {
+        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+        //        hasJumped = true;
+        //    }
+        //    else if (IsAgainstWallRight() && hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+        //    {
+        //        rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+        //        GetComponent<KnockbackWorking>().ApplyWallJump(-1);
+        //        hasJumped = true;
+        //        GetComponent<KnockbackWorking>().hasWallJumped = true;
+        //    }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0)
+        else if (jumpInputReleased && rb.velocity.y > 0  || rb.velocity.y < 0)
         {
+            Debug.Log("falling");
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.gravityScale = gravity;
         }
 
 
 
-    }
+    }   
 
     private void WallJump()
     {
-        if (Input.GetKey(KeyCode.Space))
+        var jumpInput = Input.GetButtonDown("Jump");
+        var jumpInputReleased = Input.GetButtonUp("Jump");
+
+        if (jumpInput)
         {
             if (IsWallJumpWallLeft() && canWallJump)
             {
                 canWallJump = false;
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                rb.velocity = new Vector2(rb.velocity.x  * -1, jumpforce);
                 GetComponent<KnockbackWorking>().ApplyWallJump(1);
                 StartCoroutine(wallJumpCooldownTimer());
             }
             else if (IsWallJumpWallRight() && canWallJump)
             {
                 canWallJump = false;
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce * Time.deltaTime);
+                rb.velocity = new Vector2(rb.velocity.x *1, jumpforce);
                 GetComponent<KnockbackWorking>().ApplyWallJump(1);
                 StartCoroutine(wallJumpCooldownTimer());
             }
+        }
+        else if(jumpInputReleased && rb.velocity.y  > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity.Normalize();
         }
     }
 
