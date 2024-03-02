@@ -243,33 +243,45 @@ public class PlayerController : MonoBehaviour
         Data.isWallJumping = false;
 
     }
-
+    #region Perform Walljump
     private void WallJump()
     {
-        var xDir = Input.GetAxisRaw("Horizontal");
+        int dir = 0;
         var WJInput = Input.GetButtonDown("Jump");
 
-        if (xDir == -1)
+        if (IsWallJumpWallLeft())
         {
-            xDir = 1;
+            dir = 1;
         }
-        else if(xDir == 1)
+        else if(IsWallJumpWallRight())
         {
-            xDir = -1;
+            dir = -1;
         }
+        Vector2 force = new Vector2(Data.wallJumpX, Data.wallJumpY);
 
-        if (IsWallJumpWall() && WJInput && Data.latchedToWall) 
+        force.x *= dir;
+        if (IsWallJumpWall() && WJInput) 
         {
+            if(Mathf.Sign(rb.velocity.x) != Mathf.Sign(force.x))
+            {
+                force.x -= rb.velocity.x;
+            }
+
+            if(rb.velocity.y < 0)
+            {
+                force.y -= rb.velocity.y;
+            }
+
             GetComponent<KnockbackWorking>().hasWallJumped = true;
             Data.InitialPlayerYHeight = transform.position.y;
             Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
             Data.canWallJump = false;
-            rb.velocity = new Vector2(xDir * Data.wallJumpX, Data.wallJumpY);
-            StartCoroutine(wallJumping());
+            rb.AddForce(force, ForceMode2D.Impulse);
+            //StartCoroutine(wallJumping());
             Data.canWallJump = true;
         }
     }
-
+    #endregion
 
     public IEnumerator wallJumpCooldownTimer()
     {
