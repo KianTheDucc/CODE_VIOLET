@@ -5,91 +5,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
-    public float movementforce;
 
-
-    [Space(5)]
-    [Range(0f, 100f)] public float groundcastDistance = 1.5f;
-    [Space(5)]
-    [Range(0f, 100f)] public float kbcastDistance = 1.5f;
-    [Space(5)]
-    [Range(0f, 100f)] public float WJcastDistance = 1.5f;
-
-    public LayerMask whatIsGround;
-    public LayerMask whatIsEnemy;
-    public LayerMask whatIsWall;
-    public LayerMask whatIsWJW;
-
+    #region Components
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
 
     public SpriteRenderer Player;
 
-    public float minJumpForce;
+    public MovementData Data;
+    #endregion
 
-    public float jumpforce;
-
-    public bool hasJumped = false;
-
-    public bool jumping;
-
-    public bool canDash = true;
-
-    public float dashSpeed;
-
-    public float dashTime;
-
-    public float dashCooldown;
-
-    public float knockbackForce = 10f;
-
-    public float gravity;
-
-    public float WallJumpCooldown;
-
-    public bool canWallJump = true;
-
-    public Vector2 _vecGravity;
-
-    public float InitialPlayerYHeight;
-
-    public float MaxJumpHeight;
-
-    public float MaxHeight;
-
-    public bool latchedToWall;
-
-    public float WallSlidingSpeed = 2f;
-
-    public float WallJumpDuration = 1f;
-
-    public bool isWallJumping;
-
-    public float wallJumpX;
-
-    public float wallJumpY;
-
-
-
+    #region OnStart
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    #endregion
 
+    #region Update
     private void FixedUpdate()
     {
 
-        if (!isWallJumping)
+        if (!Data.isWallJumping)
         {
             Movement();
         }
-
-
-        
-
-        
-
         startDash();
     }
 
@@ -100,56 +40,40 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 1;
         }
 
-        if (!isWallJumping)
+        if (!Data.isWallJumping)
         {
             Jump();
         }
-
-
         WallSliding();
         WallJump();
-
-        float angleIncrement = 1f;
-        for (float angle = 0f; angle < 360f; angle += angleIncrement)
-        {
-            float angleRadians = angle * Mathf.Deg2Rad;
-            Vector2 direction = new Vector2(Mathf.Cos(angleRadians), Mathf.Sin(angleRadians));
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, kbcastDistance, whatIsEnemy);
-            if (hit.collider != null)
-            {
-                Debug.Log("Raycast hit " + hit.collider.gameObject.name);
-                KnockbackCheck(hit.collider.gameObject);
-                // Checks for an entity to knock back
-            }
-        }
-
     }
+    #endregion
 
+    #region Run
     private void Movement()
     {
         float xDir = Input.GetAxisRaw("Horizontal");
 
         if (IsGrounded())
         {
-            jumping = false;
-            hasJumped = false;
+            Data.jumping = false;
+            Data.hasJumped = false;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
 
         if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && !IsWallJumpWallLeft() && !IsWallJumpWallRight())
         {
-            rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
             rb.velocity.Normalize();
         }
         else if (IsAgainstWallLeft() && xDir != -1 || IsWallJumpWallLeft() && xDir != -1)
         {
-            rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
             rb.velocity.Normalize();
         }
         else if (IsAgainstWallRight() && xDir != 1 || IsWallJumpWallRight() && xDir != 1)
         {
-            rb.velocity = new Vector2(xDir * (movementforce * Time.deltaTime), rb.velocity.y);
+            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
             rb.velocity.Normalize();
         }
 
@@ -163,10 +87,13 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    #endregion
+
+    #region Dash
     private void startDash()
     { 
         float xDir = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButton("Dash") && canDash)
+        if (Input.GetButton("Dash") && Data.canDash)
         {
             Debug.Log("dashing");
 
@@ -177,16 +104,18 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Dash(float xDir)
     {
-        canDash = false;
+        Data.canDash = false;
 
-        rb.velocity = new Vector2(xDir * dashSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(xDir * Data.dashSpeed, rb.velocity.y);
 
         //yield return new WaitForSeconds(dashTime);
 
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+        yield return new WaitForSeconds(Data.dashCooldown);
+        Data.canDash = true;
     }
+    #endregion
 
+    #region  Jump
 
     private void Jump()
     {
@@ -197,60 +126,59 @@ public class PlayerController : MonoBehaviour
         if (jumpInput)
         {
 
-            if (IsGrounded() && !hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+            if (IsGrounded() && !Data.hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
-                InitialPlayerYHeight = transform.position.y;
-                MaxJumpHeight = InitialPlayerYHeight + MaxHeight;
+                Data.InitialPlayerYHeight = transform.position.y;
+                Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
                 Debug.Log("Jump Registered");
 
-                rb.velocity = new Vector2(rb.velocity.x, jumpforce);
-                hasJumped = true;
+                rb.velocity = new Vector2(rb.velocity.x, Data.jumpforce);
+                Data.hasJumped = true;
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0 && !latchedToWall && !isWallJumping|| rb.velocity.y < 0 && !latchedToWall && !isWallJumping|| transform.position.y > MaxJumpHeight && !isWallJumping)
+        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !Data.isWallJumping|| rb.velocity.y < 0 && !Data.latchedToWall && !Data.isWallJumping|| transform.position.y > Data.MaxJumpHeight && !Data.isWallJumping && !Data.latchedToWall)
         {
             Debug.Log("falling");
 
             rb.velocity = new Vector2(rb.velocity.x, 0);
 
-            if (!latchedToWall)
+            if (!Data.latchedToWall)
             {
 
-                rb.gravityScale = gravity;
+                rb.gravityScale = Data.gravity;
             }
 
         }
 
 
 
-    }   
-
-    public IEnumerator GravityStall()
-    {
-        yield return new WaitForSeconds(1);
-        rb.gravityScale = gravity;
     }
+    #endregion
 
+    #region  WallSlide
     private void WallSliding()
     {
         var xDir = Input.GetAxisRaw("Horizontal");
 
         if (IsWallJumpWall()  && !IsGrounded() && xDir != 0)
         {
-            latchedToWall = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -WallSlidingSpeed, float.MaxValue));
+            Data.latchedToWall = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Data.WallSlidingSpeed, float.MaxValue));
         }
         else
         {
-            latchedToWall = false;
+            Data.latchedToWall = false;
         }
     }
+    #endregion
+
+    #region  WallJump
     public IEnumerator wallJumping()
     {
-        isWallJumping = true;
-        yield return new WaitForSeconds(WallJumpDuration);
-        isWallJumping = false;
+        Data.isWallJumping = true;
+        yield return new WaitForSeconds(Data.WallJumpDuration);
+        Data.isWallJumping = false;
 
     }
 
@@ -268,57 +196,32 @@ public class PlayerController : MonoBehaviour
             xDir = -1;
         }
 
-        if (IsWallJumpWall() && WJInput && latchedToWall) 
+        if (IsWallJumpWall() && WJInput && Data.latchedToWall) 
         {
-            canWallJump = false;
-            rb.velocity = new Vector2(xDir * wallJumpX, wallJumpY);
+            GetComponent<KnockbackWorking>().hasWallJumped = true;
+            Data.InitialPlayerYHeight = transform.position.y;
+            Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
+            Data.canWallJump = false;
+            rb.velocity = new Vector2(xDir * Data.wallJumpX, Data.wallJumpY);
             StartCoroutine(wallJumping());
-            canWallJump = true;
+            Data.canWallJump = true;
         }
     }
-    //private void WallJump()
-    //{
-
-
-    //    var jumpInput = Input.GetButtonDown("Jump");
-    //    var jumpInputReleased = Input.GetButtonUp("Jump");
-
-    //    if (jumpInput)
-    //    {
-    //        if (IsWallJumpWallLeft() && canWallJump)
-    //        {
-    //            canWallJump = false;
-    //            rb.velocity = new Vector2(rb.velocity.x  * -1, jumpforce);
-    //            GetComponent<KnockbackWorking>().ApplyWallJump(1);
-    //            StartCoroutine(wallJumpCooldownTimer());
-    //        }
-    //        else if (IsWallJumpWallRight() && canWallJump)
-    //        {
-    //            canWallJump = false;
-    //            rb.velocity = new Vector2(rb.velocity.x *1, jumpforce);
-    //            GetComponent<KnockbackWorking>().ApplyWallJump(1);
-    //            StartCoroutine(wallJumpCooldownTimer());
-    //        }
-    //    }
-    //    else if(jumpInputReleased && rb.velocity.y  > 0)
-    //    {
-    //        rb.velocity = new Vector2(rb.velocity.x, 0);
-    //        rb.velocity.Normalize();
-    //    }
-    //}
 
 
     public IEnumerator wallJumpCooldownTimer()
     {
-        yield return new WaitForSeconds(WallJumpCooldown);
-        canWallJump = true;
+        yield return new WaitForSeconds(Data.WallJumpCooldown);
+        Data.canWallJump = true;
     }
+    #endregion
 
+    #region Conditions
 
     public bool IsGrounded()
     {
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundcastDistance, whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Data.groundcastDistance, Data.whatIsGround);
         return hit.collider != null;
     }
 
@@ -336,58 +239,37 @@ public class PlayerController : MonoBehaviour
 
     public bool IsAgainstWallLeft()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, WJcastDistance, whatIsWall);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Data.WJcastDistance, Data.whatIsWall);
         return hit.collider != null;
     }
 
     public bool IsWallJumpWallLeft()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, WJcastDistance, whatIsWJW);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Data.WJcastDistance, Data.whatIsWJW);
         return hit.collider != null;
     }
     public bool IsWallJumpWallRight()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, WJcastDistance, whatIsWJW);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, Data.WJcastDistance, Data.whatIsWJW);
         return hit.collider != null;
     }
 
     public bool IsAgainstWallRight()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, WJcastDistance, whatIsWall);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, Data.WJcastDistance, Data.whatIsWall);
         return hit.collider != null;
     }
     public bool IsAgainstEnemyRight()
     {
         Debug.Log("HiT! R");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, kbcastDistance, whatIsEnemy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, Data.kbcastDistance, Data.whatIsEnemy);
         return hit.collider != null;
     }
     public bool IsAgainstEnemyLeft()
     {
         Debug.Log("HiT L!");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, kbcastDistance, whatIsEnemy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Data.kbcastDistance, Data.whatIsEnemy);
         return hit.collider != null;
     }
-
-
-    private void KnockbackCheck(GameObject enemy)
-    {
-        float xdir = 0;
-        Rigidbody2D enemyrb = enemy.GetComponent<Rigidbody2D>();
-        if (enemyrb.rotation >= 90)
-        {
-            xdir = -1;
-        }
-        else if (enemyrb.rotation < 90)
-        {
-            xdir = 1;
-        }
-        if (enemy.CompareTag("enemy"))
-        {
-            GetComponent<KnockbackWorking>().ApplyKnockback(xdir);
-            GetComponent<CombatScript>().DamagePlayer(10);
-        }
-
-
-    }
+    #endregion
 }
