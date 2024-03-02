@@ -62,6 +62,14 @@ public class PlayerController : MonoBehaviour
 
     public float WallSlidingSpeed = 2f;
 
+    public float WallJumpDuration = 1f;
+
+    public bool isWallJumping;
+
+    public float wallJumpX;
+
+    public float wallJumpY;
+
 
 
     private void Start()
@@ -72,7 +80,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        Movement();
+        if (!isWallJumping)
+        {
+            Movement();
+        }
+
 
         
 
@@ -88,9 +100,14 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 1;
         }
 
-        Jump();
+        if (!isWallJumping)
+        {
+            Jump();
+        }
+
 
         WallSliding();
+        WallJump();
 
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
@@ -191,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0 && !latchedToWall|| rb.velocity.y < 0 && !latchedToWall || transform.position.y > MaxJumpHeight)
+        else if (jumpInputReleased && rb.velocity.y > 0 && !latchedToWall && !isWallJumping|| rb.velocity.y < 0 && !latchedToWall && !isWallJumping|| transform.position.y > MaxJumpHeight && !isWallJumping)
         {
             Debug.Log("falling");
 
@@ -229,7 +246,36 @@ public class PlayerController : MonoBehaviour
             latchedToWall = false;
         }
     }
+    public IEnumerator wallJumping()
+    {
+        isWallJumping = true;
+        yield return new WaitForSeconds(WallJumpDuration);
+        isWallJumping = false;
 
+    }
+
+    private void WallJump()
+    {
+        var xDir = Input.GetAxisRaw("Horizontal");
+        var WJInput = Input.GetButtonDown("Jump");
+
+        if (xDir == -1)
+        {
+            xDir = 1;
+        }
+        else if(xDir == 1)
+        {
+            xDir = -1;
+        }
+
+        if (IsWallJumpWall() && WJInput && latchedToWall) 
+        {
+            canWallJump = false;
+            rb.velocity = new Vector2(xDir * wallJumpX, wallJumpY);
+            StartCoroutine(wallJumping());
+            canWallJump = true;
+        }
+    }
     //private void WallJump()
     //{
 

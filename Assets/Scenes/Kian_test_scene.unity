@@ -325,6 +325,10 @@ MonoBehaviour:
   MaxHeight: 5
   latchedToWall: 0
   WallSlidingSpeed: 4
+  WallJumpDuration: 1
+  isWallJumping: 0
+  wallJumpX: 10
+  wallJumpY: 5
 --- !u!61 &325758211
 BoxCollider2D:
   m_ObjectHideFlags: 0
