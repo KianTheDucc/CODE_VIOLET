@@ -7,7 +7,13 @@ using UnityEngine;
 public class MovementData : ScriptableObject
 {
     [Header("Movement")]
-    public float movementforce;
+    public float runMaxSpeed;
+
+    public float runAccelAmount;
+
+    public float runDecelAmount;
+
+    public bool ConserveMomentum;
 
 
     [Space(5)]

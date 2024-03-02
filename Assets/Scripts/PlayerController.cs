@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+
     #region Components
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public MovementData Data;
     #endregion
+
 
     #region OnStart
     private void Start()
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
         if (!Data.isWallJumping)
         {
-            Movement();
+            Movement(1);
         }
         startDash();
     }
@@ -50,9 +52,11 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Run
-    private void Movement()
+    private void Movement(float lerpAmount)
     {
         float xDir = Input.GetAxisRaw("Horizontal");
+
+
 
         if (IsGrounded())
         {
@@ -63,18 +67,76 @@ public class PlayerController : MonoBehaviour
 
         if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && !IsWallJumpWallLeft() && !IsWallJumpWallRight())
         {
-            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
-            rb.velocity.Normalize();
+
+            float targetSpeed = xDir * Data.runMaxSpeed;
+
+            targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+
+            #region Calculate Acceleration
+            float acceleration;
+
+            acceleration = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDecelAmount;
+            #endregion
+            #region Conserve Momentum
+
+            if (Data.ConserveMomentum && Mathf.Abs(rb.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(rb.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && IsGrounded())
+            {
+                acceleration = 0;
+            }
+            #endregion
+            float speedDif = targetSpeed - rb.velocity.x;
+
+            float movement = speedDif * acceleration;
+
+            rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
         }
         else if (IsAgainstWallLeft() && xDir != -1 || IsWallJumpWallLeft() && xDir != -1)
         {
-            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
-            rb.velocity.Normalize();
+            float targetSpeed = xDir * Data.runMaxSpeed;
+
+            targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+
+            #region Calculate Acceleration
+            float acceleration;
+
+            acceleration = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDecelAmount;
+            #endregion
+            #region Conserve Momentum
+
+            if (Data.ConserveMomentum && Mathf.Abs(rb.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(rb.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && IsGrounded())
+            {
+                acceleration = 0;
+            }
+            #endregion
+            float speedDif = targetSpeed - rb.velocity.x;
+
+            float movement = speedDif * acceleration;
+
+            rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
         }
         else if (IsAgainstWallRight() && xDir != 1 || IsWallJumpWallRight() && xDir != 1)
         {
-            rb.velocity = new Vector2(xDir * (Data.movementforce * Time.deltaTime), rb.velocity.y);
-            rb.velocity.Normalize();
+            float targetSpeed = xDir * Data.runMaxSpeed;
+
+            targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
+
+            #region Calculate Acceleration
+            float acceleration;
+
+            acceleration = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDecelAmount;
+            #endregion
+            #region Conserve Momentum
+
+            if (Data.ConserveMomentum && Mathf.Abs(rb.velocity.x) > Mathf.Abs(targetSpeed) && Mathf.Sign(rb.velocity.x) == Mathf.Sign(targetSpeed) && Mathf.Abs(targetSpeed) > 0.01f && IsGrounded())
+            {
+                acceleration = 0;
+            }
+            #endregion
+            float speedDif = targetSpeed - rb.velocity.x;
+
+            float movement = speedDif * acceleration;
+
+            rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
         }
 
         if (xDir == -1)
