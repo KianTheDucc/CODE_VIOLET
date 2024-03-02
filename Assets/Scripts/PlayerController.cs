@@ -58,6 +58,12 @@ public class PlayerController : MonoBehaviour
 
     public float MaxHeight;
 
+    public bool latchedToWall;
+
+    public float WallSlidingSpeed = 2f;
+
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -70,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
         
 
-        WallJump();
+        
 
         startDash();
     }
@@ -81,8 +87,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.gravityScale = 1;
         }
-        
+
         Jump();
+
+        WallSliding();
+
         float angleIncrement = 1f;
         for (float angle = 0f; angle < 360f; angle += angleIncrement)
         {
@@ -153,7 +162,7 @@ public class PlayerController : MonoBehaviour
     {
         canDash = false;
 
-        rb.velocity = new Vector2(xDir * (dashSpeed * Time.deltaTime), rb.velocity.y);
+        rb.velocity = new Vector2(xDir * dashSpeed, rb.velocity.y);
 
         //yield return new WaitForSeconds(dashTime);
 
@@ -182,45 +191,75 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0  || rb.velocity.y < 0 || transform.position.y > MaxJumpHeight && GetComponent<KnockbackWorking>().hasWallJumped == false)
+        else if (jumpInputReleased && rb.velocity.y > 0 && !latchedToWall|| rb.velocity.y < 0 && !latchedToWall || transform.position.y > MaxJumpHeight)
         {
             Debug.Log("falling");
+
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.gravityScale = gravity;
+
+            if (!latchedToWall)
+            {
+
+                rb.gravityScale = gravity;
+            }
+
         }
 
 
 
     }   
 
-    private void WallJump()
+    public IEnumerator GravityStall()
     {
-        var jumpInput = Input.GetButtonDown("Jump");
-        var jumpInputReleased = Input.GetButtonUp("Jump");
+        yield return new WaitForSeconds(1);
+        rb.gravityScale = gravity;
+    }
 
-        if (jumpInput)
+    private void WallSliding()
+    {
+        var xDir = Input.GetAxisRaw("Horizontal");
+
+        if (IsWallJumpWall()  && !IsGrounded() && xDir != 0)
         {
-            if (IsWallJumpWallLeft() && canWallJump)
-            {
-                canWallJump = false;
-                rb.velocity = new Vector2(rb.velocity.x  * -1, jumpforce);
-                GetComponent<KnockbackWorking>().ApplyWallJump(1);
-                StartCoroutine(wallJumpCooldownTimer());
-            }
-            else if (IsWallJumpWallRight() && canWallJump)
-            {
-                canWallJump = false;
-                rb.velocity = new Vector2(rb.velocity.x *1, jumpforce);
-                GetComponent<KnockbackWorking>().ApplyWallJump(1);
-                StartCoroutine(wallJumpCooldownTimer());
-            }
+            latchedToWall = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -WallSlidingSpeed, float.MaxValue));
         }
-        else if(jumpInputReleased && rb.velocity.y  > 0)
+        else
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.velocity.Normalize();
+            latchedToWall = false;
         }
     }
+
+    //private void WallJump()
+    //{
+
+
+    //    var jumpInput = Input.GetButtonDown("Jump");
+    //    var jumpInputReleased = Input.GetButtonUp("Jump");
+
+    //    if (jumpInput)
+    //    {
+    //        if (IsWallJumpWallLeft() && canWallJump)
+    //        {
+    //            canWallJump = false;
+    //            rb.velocity = new Vector2(rb.velocity.x  * -1, jumpforce);
+    //            GetComponent<KnockbackWorking>().ApplyWallJump(1);
+    //            StartCoroutine(wallJumpCooldownTimer());
+    //        }
+    //        else if (IsWallJumpWallRight() && canWallJump)
+    //        {
+    //            canWallJump = false;
+    //            rb.velocity = new Vector2(rb.velocity.x *1, jumpforce);
+    //            GetComponent<KnockbackWorking>().ApplyWallJump(1);
+    //            StartCoroutine(wallJumpCooldownTimer());
+    //        }
+    //    }
+    //    else if(jumpInputReleased && rb.velocity.y  > 0)
+    //    {
+    //        rb.velocity = new Vector2(rb.velocity.x, 0);
+    //        rb.velocity.Normalize();
+    //    }
+    //}
 
 
     public IEnumerator wallJumpCooldownTimer()
@@ -232,8 +271,21 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundcastDistance, whatIsGround);
         return hit.collider != null;
+    }
+
+    public bool IsWallJumpWall()
+    {
+        if  (IsWallJumpWallLeft()  || IsWallJumpWallRight())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool IsAgainstWallLeft()
