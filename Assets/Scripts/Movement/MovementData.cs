@@ -13,20 +13,37 @@ public class MovementData : ScriptableObject
 
     public float runDecelAmount;
 
+    public float wallJumpRunLerp;
+
+    public float dashEndRunLerp;
+
     public bool ConserveMomentum;
 
+    [Range(0.01f, 0.5f)] public float CoyoteTime;
 
+    [Header("Collision Raycasts (DONT TOUCH)")]
     [Space(5)]
-    [Range(0f, 100f)] public float groundcastDistance = 1.5f;
+    [Range(0f, 100f)] public float groundcastDistance = 0.7f;
     [Space(5)]
     [Range(0f, 100f)] public float kbcastDistance = 1.5f;
     [Space(5)]
-    [Range(0f, 100f)] public float WJcastDistance = 1.5f;
+    [Range(0f, 100f)] public float WJcastDistance = 0.7f;
 
+    [Header("Layers & Tags")]
     public LayerMask whatIsGround;
     public LayerMask whatIsEnemy;
     public LayerMask whatIsWall;
     public LayerMask whatIsWJW;
+
+    [Header("Gravity")]
+    [Space(5)]
+    public float baseGravityScale;
+    public float fallGravityMult;
+    public float jumpHangGravityMult;
+    public float jumpCutGravityMult;
+    public float maxFallSpeed;
+
+
 
     [Header("Jumping")]
     [Space(5)]
@@ -46,6 +63,8 @@ public class MovementData : ScriptableObject
 
     public float MaxHeight;
 
+    public float jumpHangTimeThreshold;
+
     [Header("Dashing")]
     [Space(5)]
     public bool canDash = true;
@@ -53,6 +72,8 @@ public class MovementData : ScriptableObject
     public float dashSpeed;
 
     public float dashTime;
+
+    public bool dashing;
 
     public float dashCooldown;
 
@@ -71,6 +92,8 @@ public class MovementData : ScriptableObject
     public float WallJumpDuration = 1f;
 
     public bool isWallJumping;
+
+    public float wallJumpTime;
 
     public float wallJumpX;
 
