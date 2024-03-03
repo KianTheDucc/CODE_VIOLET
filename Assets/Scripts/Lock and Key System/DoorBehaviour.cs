@@ -16,6 +16,7 @@ public class DoorBehaviour : MonoBehaviour
         {
             doorOpen = true;
             doorAnim = gameObject.GetComponent<Animator>();
+            
             if(doorOpen == true)
             {
                 doorAnim.Play("OpenDoor");
