@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,25 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
 
-    #region PLAYER STATES
-
-    //Timers for player states
-
-    private float LastOnGroundTime;
-    private float LastOnWallTime;
-    private float LastOnWallRightTime;
-    private float LastOnWallLeftTime;
-    private float LastJumpPressedTime;
-    private float LastPressedDashTime;
-    private float wallJumpStartTime;
-
-    //States for player jump cancel
-    private bool isJumpCut;
-    private bool isJumpFalling;
-
-    #endregion
-
-    #region COMPONENTS
+    #region Components
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
 
@@ -35,43 +16,31 @@ public class PlayerController : MonoBehaviour
     public MovementData Data;
     #endregion
 
-    #region START
+
+    #region OnStart
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     #endregion
 
-    #region UPDATE
+    #region Update
     private void FixedUpdate()
     {
-        if (!Data.dashing)
-        {
-            if (!Data.isWallJumping)
-            {
-                Movement(1);
-            }
-            else
-            {
-                Movement(Data.wallJumpRunLerp);
-            }
-        }
-        else
-        {
-            Movement(Data.dashEndRunLerp);
-        }
 
+        if (!Data.isWallJumping)
+        {
+            Movement(1);
+        }
         startDash();
     }
 
     private void Update()
     {
-
-        Timers();
-        CollisionChecks();
-        DashChecks();
-        Gravity();
-        JumpChecks();
+        if (IsGrounded())
+        {
+            rb.gravityScale = 1;
+        }
 
         if (!Data.isWallJumping)
         {
@@ -82,44 +51,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region GRAVITY
-
-    private void Gravity()
-    {
-        if (!Data.dashing)
-        {
-            if (rb.velocity.y < 0)
-            {
-                SetGravityscale(Data.baseGravityScale * Data.fallGravityMult);
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
-            }
-            else if (isJumpCut)
-            {
-                SetGravityscale(-Data.baseGravityScale * Data.jumpCutGravityMult);
-            }
-            else if (Data.jumping || Data.isWallJumping || isJumpFalling && Mathf.Abs(rb.velocity.y) < Data.jumpHangTimeThreshold)
-            {
-                SetGravityscale(Data.baseGravityScale * Data.jumpHangGravityMult);
-            }
-            else
-            {
-                SetGravityscale(Data.baseGravityScale);
-            }
-        }
-        else
-        {
-            SetGravityscale(0);
-        }
-    }
-
-    public void SetGravityscale(float scale)
-    {
-        rb.gravityScale = scale;
-    }
-
-    #endregion
-
-    #region RUN
+    #region Run
     private void Movement(float lerpAmount)
     {
         float xDir = Input.GetAxisRaw("Horizontal");
@@ -219,21 +151,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region DASH CHECKS
-
-    private void DashChecks()
-    {
-        Data.dashing = true;
-        Data.jumping = false;
-        Data.isWallJumping = false;
-        isJumpCut = false;
-
-        StartCoroutine(nameof(startDash));
-    }
-
-    #endregion
-
-    #region DASH
+    #region Dash
     private void startDash()
     { 
         float xDir = Input.GetAxisRaw("Horizontal");
@@ -252,8 +170,6 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector2(xDir * Data.dashSpeed, rb.velocity.y);
 
-        Data.dashing = false;
-
         //yield return new WaitForSeconds(dashTime);
 
         yield return new WaitForSeconds(Data.dashCooldown);
@@ -261,95 +177,48 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region JUMP CHECKS
-    private void JumpChecks()
-    {
-        if (Data.jumping && rb.velocity.y < 0)
-        {
-            Data.jumping = false;
-
-            isJumpFalling = true;
-        }
-        if (Data.isWallJumping && Time.time - wallJumpStartTime > Data.wallJumpTime)
-        {
-            Data.isWallJumping = false;
-        }
-        if(LastOnGroundTime > 0  && !Data.jumping && !Data.isWallJumping)
-        {
-            isJumpCut = false;
-            isJumpFalling = false;
-        }
-        if (!Data.dashing)
-        {
-            if (canJump() && LastJumpPressedTime > 0)
-            {
-                Data.jumping = true;
-                Data.isWallJumping = false;
-                isJumpCut = false;
-                isJumpFalling = false;
-                Jump();
-            }
-            else if (canWallJump() && LastJumpPressedTime > 0)
-            {
-                Data.isWallJumping = true;
-                Data.jumping = false;
-                isJumpCut = false;
-                isJumpFalling = false;
-
-                wallJumpStartTime = Time.time;
-                WallJump();
-            }
-        }
-    }
-    #endregion
-
-    #region  JUMP
+    #region  Jump
 
     private void Jump()
     {
-
-
         var jumpInput = Input.GetButtonDown("Jump");
         var jumpInputReleased = Input.GetButtonUp("Jump");
 
 
         if (jumpInput)
         {
-            LastJumpPressedTime = 0;
-            LastOnGroundTime = 0;
-            //Data.InitialPlayerYHeight = transform.position.y;
-            //Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
-            Debug.Log("Jump Registered");
 
-            float force = Data.jumpforce;
-            if(rb.velocity.y  < 0)
+            if (IsGrounded() && !Data.hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
-                force -= rb.velocity.y;
+                Data.InitialPlayerYHeight = transform.position.y;
+                Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
+                Debug.Log("Jump Registered");
+
+                rb.velocity = new Vector2(rb.velocity.x, Data.jumpforce);
+                Data.hasJumped = true;
+
+            }
+        }
+        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !Data.isWallJumping|| rb.velocity.y < 0 && !Data.latchedToWall && !Data.isWallJumping|| transform.position.y > Data.MaxJumpHeight && !Data.isWallJumping && !Data.latchedToWall)
+        {
+            Debug.Log("falling");
+
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+
+            if (!Data.latchedToWall)
+            {
+
+                rb.gravityScale = Data.gravity;
             }
 
-            rb.velocity = new Vector2(rb.velocity.x, force);
-            Data.hasJumped = true;          
         }
-        //else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !Data.isWallJumping|| rb.velocity.y < 0 && !Data.latchedToWall && !Data.isWallJumping|| transform.position.y > Data.MaxJumpHeight && !Data.isWallJumping && !Data.latchedToWall)
-        //{
-        //    Debug.Log("falling");
-
-        //    rb.velocity = new Vector2(rb.velocity.x, 0);
-
-        //    if (!Data.latchedToWall)
-        //    {
-
-        //        rb.gravityScale = Data.gravity;
-        //    }
-
-        //}
 
 
 
     }
     #endregion
 
-    #region  WALLSLIDE
+    #region  WallSlide
     private void WallSliding()
     {
         var xDir = Input.GetAxisRaw("Horizontal");
@@ -366,7 +235,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region  WALLJUMP
+    #region  WallJump
     public IEnumerator wallJumping()
     {
         Data.isWallJumping = true;
@@ -421,23 +290,13 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region CONDITIONS
+    #region Conditions
 
     public bool IsGrounded()
     {
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Data.groundcastDistance, Data.whatIsGround);
         return hit.collider != null;
-    }
-
-    private bool canJump()
-    {
-        return LastOnGroundTime > 0 && !Data.jumping;
-    }
-
-    private bool canWallJump()
-    {
-        return LastJumpPressedTime > 0 && LastOnWallTime > 0 && LastOnGroundTime <= 0 && !Data.isWallJumping;
     }
 
     public bool IsWallJumpWall()
@@ -485,36 +344,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("HiT L!");
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, Data.kbcastDistance, Data.whatIsEnemy);
         return hit.collider != null;
-    }
-    #endregion
-
-    #region TIMERS
-    private void Timers()
-    {
-        LastOnGroundTime -= Time.deltaTime;
-        LastOnWallTime -= Time.deltaTime;
-        LastOnWallLeftTime -= Time.deltaTime;
-        LastOnWallRightTime -= Time.deltaTime;
-    }
-    #endregion
-
-    #region COLLISION CHECKS
-    private void CollisionChecks()
-    {
-        if(!Data.jumping && !Data.dashing)
-        if (IsGrounded())
-        {
-            LastOnGroundTime = Data.CoyoteTime;
-        }
-        if (IsWallJumpWallLeft())
-        {
-            LastOnWallLeftTime = Data.CoyoteTime;
-        }
-        if (IsWallJumpWallRight())
-        {
-            LastOnWallRightTime = Data.CoyoteTime;
-        }
-        LastOnWallTime = Mathf.Max(LastOnWallLeftTime, LastOnWallRightTime);
     }
     #endregion
 }
