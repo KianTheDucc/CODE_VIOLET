@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495a06409a923e549a4509403fe112d7, type: 3}
   m_Name: Movement Data
   m_EditorClassIdentifier: 
-  movementforce: 500
+  runMaxSpeed: 0
+  runAccelAmount: 0
+  runDecelAmount: 0
+  ConserveMomentum: 0
   groundcastDistance: 0.7
   kbcastDistance: 1.5
   WJcastDistance: 0.7
@@ -33,8 +36,8 @@ MonoBehaviour:
   hasJumped: 0
   jumping: 0
   gravity: 40
-  InitialPlayerYHeight: -4.557849
-  MaxJumpHeight: 0.44215107
+  InitialPlayerYHeight: -4.4134264
+  MaxJumpHeight: 0.5865736
   MaxHeight: 5
   canDash: 1
   dashSpeed: 3000
