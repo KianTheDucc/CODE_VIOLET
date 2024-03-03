@@ -10,21 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 495a06409a923e549a4509403fe112d7, type: 3}
-  m_Name: PlayerMove
+  m_Name: BaseMovement
   m_EditorClassIdentifier: 
-  runMaxSpeed: 30
-  runAccelAmount: 5
-  runDecelAmount: 10
-  wallJumpRunLerp: 0.5
-  dashEndRunLerp: 0.5
-  ConserveMomentum: 0
-  CoyoteTime: 0.11
+  runMaxSpeed: 15
+  runAccelAmount: 7
+  runDecelAmount: 7
+  ConserveMomentum: 1
   groundcastDistance: 0.7
   kbcastDistance: 1.5
   WJcastDistance: 0.7
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 0
@@ -34,21 +31,17 @@ MonoBehaviour:
   whatIsWJW:
     serializedVersion: 2
     m_Bits: 128
-  baseGravityScale: 1
-  fallGravityMult: 2
-  jumpHangGravityMult: 0.9
-  jumpCutGravityMult: 2
-  maxFallSpeed: 75
-  jumpforce: 5
+  minJumpForce: 0
+  jumpforce: 15
   hasJumped: 0
   jumping: 0
-  jumpHangTimeThreshold: 20
+  gravity: 40
+  InitialPlayerYHeight: -0.77682954
+  MaxJumpHeight: 49.22317
+  MaxHeight: 50
   canDash: 1
-  dashSpeed: 15
-  dashEndSpeed: 5
-  dashTime: 0.2
-  dashEndTime: 0.3
-  dashing: 1
+  dashSpeed: 100
+  dashTime: 2
   dashCooldown: 2
   knockbackForce: 10
   WallJumpCooldown: 1
@@ -57,6 +50,5 @@ MonoBehaviour:
   WallSlidingSpeed: 2
   WallJumpDuration: 1
   isWallJumping: 0
-  wallJumpTime: 2
   wallJumpX: 5
   wallJumpY: 5

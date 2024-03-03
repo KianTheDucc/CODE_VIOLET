@@ -203,11 +203,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("falling");
 
-            rb.velocity = new Vector2(rb.velocity.x, 0);
 
-            if (!Data.latchedToWall)
+
+            if (!Data.latchedToWall && !Data.isWallJumping)
             {
-
+                rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.gravityScale = Data.gravity;
             }
 
