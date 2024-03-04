@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -28,27 +29,29 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (!Data.isWallJumping)
+        if (!Data.dashing)
         {
             Movement(1);
+            startDash();
         }
-        startDash();
+
     }
 
     private void Update()
-    {
+    {   
         if (IsGrounded())
         {
             rb.gravityScale = 1;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
 
-        if (!Data.isWallJumping)
+        if (!Data.dashing)
         {
             Jump();
+            WallSliding();
+            WallJump();
         }
-        WallSliding();
-        WallJump();
+
     }
     #endregion
 
@@ -169,9 +172,19 @@ public class PlayerController : MonoBehaviour
     {
         Data.canDash = false;
 
+        Data.dashing = true;
+
+        rb.gravityScale = 0;
+
         rb.velocity = new Vector2(xDir * Data.dashSpeed, rb.velocity.y);
 
-        //yield return new WaitForSeconds(dashTime);
+        yield return new WaitForSeconds(Data.dashTime);
+
+        rb.velocity = new Vector2(0, 0);
+
+        rb.gravityScale = Data.gravity;
+
+        Data.dashing = false;
 
         yield return new WaitForSeconds(Data.dashCooldown);
         Data.canDash = true;
@@ -237,13 +250,13 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region  WallJump
-    public IEnumerator wallJumping()
-    {
-        Data.isWallJumping = true;
-        yield return new WaitForSeconds(Data.WallJumpDuration);
-        Data.isWallJumping = false;
+    //public IEnumerator wallJumping()
+    //{
+    //    Data.isWallJumping = true;
+    //    yield return new WaitForSeconds(Data.WallJumpDuration);
+    //    Data.isWallJumping = false;
 
-    }
+    //}
     #region Perform Walljump
     private void WallJump()
     {

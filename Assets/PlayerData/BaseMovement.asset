@@ -15,10 +15,7 @@ MonoBehaviour:
   runMaxSpeed: 15
   runAccelAmount: 7
   runDecelAmount: 7
-  ConserveMomentum: 1
-  groundcastDistance: 0.7
-  kbcastDistance: 1.5
-  WJcastDistance: 0.7
+  ConserveMomentum: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -33,22 +30,24 @@ MonoBehaviour:
     m_Bits: 128
   minJumpForce: 0
   jumpforce: 15
-  hasJumped: 0
-  jumping: 0
-  gravity: 40
-  InitialPlayerYHeight: -0.77682954
-  MaxJumpHeight: 49.22317
-  MaxHeight: 50
-  canDash: 1
-  dashSpeed: 100
-  dashTime: 2
+  MaxHeight: 5
+  gravity: 20
+  dashSpeed: 20
+  dashTime: 0.2
   dashCooldown: 2
-  knockbackForce: 10
-  WallJumpCooldown: 1
-  canWallJump: 1
-  latchedToWall: 0
   WallSlidingSpeed: 2
-  WallJumpDuration: 1
-  isWallJumping: 0
   wallJumpX: 5
   wallJumpY: 5
+  groundcastDistance: 0.7
+  kbcastDistance: 1.5
+  WJcastDistance: 0.7
+  hasJumped: 0
+  jumping: 0
+  InitialPlayerYHeight: 0
+  MaxJumpHeight: 0
+  dashing: 0
+  canDash: 1
+  canWallJump: 1
+  latchedToWall: 0
+  isWallJumping: 0
+  WallJumpCooldown: 0
