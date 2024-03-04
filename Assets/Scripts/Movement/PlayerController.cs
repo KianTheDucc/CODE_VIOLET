@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             rb.gravityScale = 1;
+            GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
 
         if (!Data.isWallJumping)
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !Data.isWallJumping|| rb.velocity.y < 0 && !Data.latchedToWall && !Data.isWallJumping|| transform.position.y > Data.MaxJumpHeight && !Data.isWallJumping && !Data.latchedToWall)
+        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped|| rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || transform.position.y > Data.MaxJumpHeight && !GetComponent<KnockbackWorking>().hasWallJumped && !Data.latchedToWall)
         {
             Debug.Log("falling");
 
