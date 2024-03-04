@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495a06409a923e549a4509403fe112d7, type: 3}
+  m_Name: OzzyMovement
+  m_EditorClassIdentifier: 
+  runMaxSpeed: 15
+  runAccelAmount: 7
+  runDecelAmount: 7
+  ConserveMomentum: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsWJW:
+    serializedVersion: 2
+    m_Bits: 128
+  minJumpForce: 0
+  jumpforce: 15
+  MaxHeight: 5
+  gravity: 40
+  dashSpeed: 100
+  dashTime: 0.3
+  dashCooldown: 2
+  WallSlidingSpeed: 20
+  wallJumpX: 30
+  wallJumpY: 15
+  groundcastDistance: 0.7
+  kbcastDistance: 1.5
+  WJcastDistance: 0.7
+  hasJumped: 0
+  jumping: 0
+  InitialPlayerYHeight: 11.215429
+  MaxJumpHeight: 16.21543
+  dashing: 0
+  canDash: 1
+  canWallJump: 1
+  latchedToWall: 0
+  isWallJumping: 0
+  WallJumpCooldown: 0

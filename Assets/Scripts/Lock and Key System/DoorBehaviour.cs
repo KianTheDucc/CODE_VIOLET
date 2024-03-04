@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class DoorBehaviour : MonoBehaviour
 {
-   public GameObject playerRef;
-   private Animator doorAnim;
-   private bool doorOpen = false;
+    public GameObject playerRef;
+    private GameObject door;
+    private Animator doorAnim;
+    private void Start()
+    {
+        door = this.gameObject;
+        doorAnim = GetComponent<Animator>();
+        doorAnim.SetBool("doorOpen", false);
+        doorAnim.transform.position = door.transform.position;
+    }
 
-   void OnCollisionEnter2D(Collision2D Other)
+    void OnCollisionEnter2D(Collision2D Other)
     {
         Debug.Log("Door Collision");
-
+        
         if (playerRef.GetComponent<Inventory>().keyList.Contains(this.tag))
         {
-            doorOpen = true;
-            doorAnim = gameObject.GetComponent<Animator>();
+            doorAnim.SetBool("doorOpen", true);
             
-            if(doorOpen == true)
+            if (doorAnim.GetBool("doorOpen") == true)
             {
-                doorAnim.Play("OpenDoor");
-            }
-            else
-            {
-                doorAnim.Play("CloseDoor");
+                Debug.Log("Condition set to true.");
             }
         }
     }
