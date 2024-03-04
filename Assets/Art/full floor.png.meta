@@ -260,8 +260,8 @@ TextureImporter:
       name: full floor_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 61
+        y: 1
         width: 64
         height: 64
       alignment: 0
