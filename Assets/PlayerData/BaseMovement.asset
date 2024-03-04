@@ -31,20 +31,20 @@ MonoBehaviour:
   minJumpForce: 0
   jumpforce: 15
   MaxHeight: 5
-  gravity: 20
-  dashSpeed: 20
-  dashTime: 0.2
+  gravity: 40
+  dashSpeed: 100
+  dashTime: 0.3
   dashCooldown: 2
-  WallSlidingSpeed: 2
-  wallJumpX: 5
-  wallJumpY: 5
+  WallSlidingSpeed: 20
+  wallJumpX: 30
+  wallJumpY: 15
   groundcastDistance: 0.7
   kbcastDistance: 1.5
   WJcastDistance: 0.7
   hasJumped: 0
   jumping: 0
-  InitialPlayerYHeight: 0
-  MaxJumpHeight: 0
+  InitialPlayerYHeight: 11.215429
+  MaxJumpHeight: 16.21543
   dashing: 0
   canDash: 1
   canWallJump: 1

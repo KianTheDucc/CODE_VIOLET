@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-
+   
     #region Components
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
             Movement(1);
             startDash();
         }
-
     }
 
     private void Update()
@@ -290,7 +289,10 @@ public class PlayerController : MonoBehaviour
             Data.InitialPlayerYHeight = transform.position.y;
             Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
             Data.canWallJump = false;
-            rb.AddForce(force, ForceMode2D.Impulse);
+            var maxJumpSpeed = force;
+            rb.velocity = force;
+
+
             //StartCoroutine(wallJumping());
             Data.canWallJump = true;
         }
