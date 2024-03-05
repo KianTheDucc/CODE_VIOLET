@@ -22,6 +22,7 @@ public class removeBasicMovement : MonoBehaviour
         if(UI_Text != null)
         {
             Destroy(UI_Text);
+            UI_Text = null;
             Debug.Log("Collision");
         }
     }
