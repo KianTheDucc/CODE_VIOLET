@@ -79,5 +79,9 @@ public class EnemyAlert : MonoBehaviour
         }
 
     }
+    public void damaged()
+    {
+        isAlert = true;
+    }
 
 }

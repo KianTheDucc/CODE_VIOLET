@@ -24,7 +24,15 @@ public class AttackBox : MonoBehaviour
         if (other.tag == ("Enemy") && hit == false)
         {
             Debug.Log("Enemy hit");
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            if (!other.gameObject.GetComponent<EnemyAlert>().isAlert)
+            {
+                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage*2);
+                other.gameObject.GetComponent<EnemyAlert>().damaged();
+            }
+            else
+            {
+                other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            }
             hit = true;
         }
     }
