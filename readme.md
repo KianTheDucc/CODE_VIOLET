@@ -1,4 +1,4 @@
-### Blank Unity Project ### 
+### Code Violet ### 
 
 This repository is home to the greatest metroidvania ever made. 
 
