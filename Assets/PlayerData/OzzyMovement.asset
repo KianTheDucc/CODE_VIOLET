@@ -29,9 +29,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   minJumpForce: 0
-  jumpforce: 30
-  MaxHeight: 10
-  gravity: 40
+  jumpforce: 100
+  MaxHeight: 70
+  gravity: 30
   dashSpeed: 15
   dashTime: 0.3
   dashCooldown: 2
@@ -43,8 +43,8 @@ MonoBehaviour:
   WJcastDistance: 0.7
   hasJumped: 0
   jumping: 0
-  InitialPlayerYHeight: -19.753265
-  MaxJumpHeight: -9.753265
+  InitialPlayerYHeight: -59.679638
+  MaxJumpHeight: 10.320362
   dashing: 0
   canDash: 1
   canWallJump: 1
