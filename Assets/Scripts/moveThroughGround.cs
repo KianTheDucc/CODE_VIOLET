@@ -18,13 +18,6 @@ public class moveThroughGround : MonoBehaviour
             {
                 this.GetComponent<BoxCollider2D>().enabled = true;
             }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    this.GetComponent<BoxCollider2D>().enabled = true;
-                }
-            }
         }
     }
 }
