@@ -8,6 +8,7 @@ TagManager:
   - Purple
   - Green
   - Red
+  - Enemy
   layers:
   - Default
   - TransparentFX

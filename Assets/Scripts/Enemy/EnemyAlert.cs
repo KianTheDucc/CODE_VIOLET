@@ -10,6 +10,9 @@ public class EnemyAlert : MonoBehaviour
     public GameObject Player;
     public float speed;
     private float distance;
+    public float patrolTime = 3f;
+    private float patrolDir = -1f;
+    private float patrolTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,7 @@ public class EnemyAlert : MonoBehaviour
         {
             HitBox.SetActive(true);
             isAlert = true;
-
+            patrolTimer = patrolTime;
         }
 
     }
@@ -46,6 +49,33 @@ public class EnemyAlert : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
+        }
+        else
+        {
+            //patrol left and right
+            transform.position = transform.position + new Vector3(patrolDir * speed * Time.deltaTime, 0, 0);
+        }
+
+        patrolTimer -= Time.deltaTime;
+
+        if (patrolTimer <= 0.0f)
+        {
+            timerEnded();
+        }
+
+    }
+
+    void timerEnded()
+    {
+        patrolTimer = patrolTime;
+        patrolDir = patrolDir * -1f;
+        if (patrolDir < 0f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
     }
