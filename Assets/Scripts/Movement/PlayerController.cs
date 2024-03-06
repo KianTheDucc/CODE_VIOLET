@@ -40,12 +40,14 @@ public class PlayerController : MonoBehaviour
     {   
         if(rb.velocity.y < 0)
         {
+            //Sets the gravity for when the player is falling
             rb.gravityScale = Data.gravity;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
         }
 
         if (IsGrounded())
         {
+            //Resets gravity if on the ground
             rb.gravityScale = 1;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
         if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && !IsWallJumpWallLeft() && !IsWallJumpWallRight())
         {
-
+            // the top speed for the movement
             float targetSpeed = xDir * Data.runMaxSpeed;
 
             targetSpeed = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpAmount);
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
             #region Calculate Acceleration
             float acceleration;
 
+            //Calculates the Acceleration/Decceleration of the player 
             acceleration = (Mathf.Abs(targetSpeed) > 0.01f) ? Data.runAccelAmount : Data.runDecelAmount;
             #endregion
             #region Conserve Momentum
@@ -93,8 +96,12 @@ public class PlayerController : MonoBehaviour
                 acceleration = 0;
             }
             #endregion
-            float speedDif = targetSpeed - rb.velocity.x;
 
+            //Difference between current speed and top speed
+            float speedDif = targetSpeed - rb.velocity.x;
+            
+
+            //The force to add to the player each frame
             float movement = speedDif * acceleration;
 
             rb.AddForce(movement * Vector2.right, ForceMode2D.Force);
@@ -242,6 +249,7 @@ public class PlayerController : MonoBehaviour
     {
         var xDir = Input.GetAxisRaw("Horizontal");
 
+        //Checks that the player isn't grounded and it is a wall they can slide on
         if (IsWallJumpWall()  && !IsGrounded() && xDir != 0)
         {
             Data.latchedToWall = true;
@@ -268,6 +276,7 @@ public class PlayerController : MonoBehaviour
         int dir = 0;
         var WJInput = Input.GetButtonDown("Jump");
 
+        //gets the direction to wall jump
         if (IsWallJumpWallLeft())
         {
             dir = 1;
@@ -276,9 +285,13 @@ public class PlayerController : MonoBehaviour
         {
             dir = -1;
         }
-        Vector2 force = new Vector2(Data.wallJumpX, Data.wallJumpY);
 
+        //defining what speed in both directions to make the player
+        Vector2 force = new Vector2(Data.wallJumpX, Data.wallJumpY);
+        
+        //Makes the force apply in the required direction
         force.x *= dir;
+
         if (IsWallJumpWall() && WJInput) 
         {
             if(Mathf.Sign(rb.velocity.x) != Mathf.Sign(force.x))
@@ -286,20 +299,22 @@ public class PlayerController : MonoBehaviour
                 force.x -= rb.velocity.x;
             }
 
+            
             if(rb.velocity.y < 0 && !Data.latchedToWall)
             {
                 force.y -= rb.velocity.y;
             }
 
             GetComponent<KnockbackWorking>().hasWallJumped = true;
+
             Data.InitialPlayerYHeight = transform.position.y; 
+
             Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
+
             Data.canWallJump = false;
-            var maxJumpSpeed = force;
+
             rb.velocity = force;
 
-
-            //StartCoroutine(wallJumping());
             Data.canWallJump = true;
         }
     }
