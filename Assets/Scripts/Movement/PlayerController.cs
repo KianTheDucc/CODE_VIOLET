@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {   
+        if(rb.velocity.y < 0)
+        {
+            rb.gravityScale = Data.gravity;
+        }
+
         if (IsGrounded())
         {
             rb.gravityScale = 1;
@@ -280,13 +285,13 @@ public class PlayerController : MonoBehaviour
                 force.x -= rb.velocity.x;
             }
 
-            if(rb.velocity.y < 0)
+            if(rb.velocity.y < 0 && !Data.latchedToWall)
             {
                 force.y -= rb.velocity.y;
             }
 
             GetComponent<KnockbackWorking>().hasWallJumped = true;
-            Data.InitialPlayerYHeight = transform.position.y;
+            Data.InitialPlayerYHeight = transform.position.y; 
             Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
             Data.canWallJump = false;
             var maxJumpSpeed = force;
