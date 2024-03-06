@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatScript : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     public int curHealth = 0;
-    public int MaxHealth = 100;
+    public int MaxHealth = 10;
     public GameObject entity;
     // Start is called before the first frame update
     void Start()
@@ -13,24 +13,21 @@ public class CombatScript : MonoBehaviour
         curHealth = MaxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
         if (curHealth == 0)
         {
             entity.SetActive(false);
-            Debug.Log("Player Death");
+            Debug.Log("Enemy Death");
         }
-    }
-    public void DamagePlayer(int damage)
-    {
-        curHealth -= damage;
+    } 
 
-
-    }
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
     }
+    // Update is called once per frame
+
+
 }

@@ -8,6 +8,7 @@ public class AttackBox : MonoBehaviour
     Vector2 pos;
     public GameObject player;
     Vector2 playerPos;
+    public int Damage = 1;
 
 
     // Start is called before the first frame update
@@ -18,11 +19,12 @@ public class AttackBox : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy" && hit == false)
+        if (other.tag == ("Enemy") && hit == false)
         {
             Debug.Log("Enemy hit");
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             hit = true;
         }
     }

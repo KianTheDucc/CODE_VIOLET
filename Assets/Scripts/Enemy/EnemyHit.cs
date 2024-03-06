@@ -13,6 +13,7 @@ public class EnemyHitScript : MonoBehaviour
     public float windupTime = 3f;
     public float damageTime = 0.1f;
     public float cooldownTime = 3f;
+    public int EnemyDamage = 1;
 
 
     void OnTriggerStay2D(Collider2D other)
@@ -23,6 +24,7 @@ public class EnemyHitScript : MonoBehaviour
         }
         if (other.tag == "Player" && playerHit == true)
         {
+            other.gameObject.GetComponent<CombatScript>().DamagePlayer(EnemyDamage);
             Debug.Log("Player Hit");
             playerHit = false;
         }
