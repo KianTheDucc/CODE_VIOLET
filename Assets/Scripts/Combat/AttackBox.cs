@@ -5,7 +5,6 @@ using UnityEngine;
 public class AttackBox : MonoBehaviour
 {
     public bool hit;
-    public float damageTime = 1f;
     Vector2 pos;
     public GameObject player;
     Vector2 playerPos;
@@ -19,9 +18,9 @@ public class AttackBox : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (collision.tag == "Enemy" && hit == false)
+        if (other.tag == "Enemy" && hit == false)
         {
             Debug.Log("Enemy hit");
             hit = true;
