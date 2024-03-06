@@ -35,19 +35,32 @@ public class AttackBox : MonoBehaviour
 
     void Update()
     {
-        float xDir = Input.GetAxisRaw("Horizontal");
-        playerPos = player.transform.position;
-        if (xDir == -1)
-        {
-            pos.x = (playerPos.x-1.5f);
-            pos.y = playerPos.y;
-            transform.position = pos;
-        }
-        if (xDir == 1)
-        {
-            pos.x = (playerPos.x+1.5f);
-            pos.y = playerPos.y;
-            transform.position = pos;
-        }
+        //var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //playerPos = player.transform.position;
+        //if (input.x == -1 || input.x == 0 && player.GetComponent<SpriteRenderer>().flipX)
+        //{
+        //    pos.x = playerPos.x - 1.5f;
+        //    pos.y = playerPos.y;
+        //    transform.position = pos;
+
+        //}
+        //else if (input.x == 1 || input.x == 0 && !player.GetComponent<SpriteRenderer>().flipX)
+        //{
+        //    pos.x = playerPos.x + 1.5f;
+        //    pos.y = playerPos.y;
+        //    transform.position = pos;
+        //}
+        //else if (!player.GetComponent<PlayerController>().IsGrounded() && input.y == -1)
+        //{
+        //    pos.x = playerPos.x;
+        //    pos.y = playerPos.y - 1.5f;
+        //    transform.position = pos;
+        //}
+        //else if(input.y == 1)
+        //{
+        //    pos.x = playerPos.x;
+        //    pos.y = playerPos.y + 1.5f;
+        //    transform.position = pos;
+        //}
     }
 }
