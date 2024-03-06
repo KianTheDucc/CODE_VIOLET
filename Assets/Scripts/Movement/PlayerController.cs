@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if(rb.velocity.y < 0)
         {
             rb.gravityScale = Data.gravity;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
         }
 
         if (IsGrounded())

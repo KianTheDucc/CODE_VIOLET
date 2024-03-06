@@ -31,6 +31,7 @@ MonoBehaviour:
   minJumpForce: 0
   jumpforce: 15
   MaxHeight: 5
+  maxFallSpeed: 20
   gravity: 40
   dashSpeed: 100
   dashTime: 0.3

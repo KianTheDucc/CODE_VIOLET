@@ -31,6 +31,8 @@ public class MovementData : ScriptableObject
 
     public float MaxHeight;
 
+    public float maxFallSpeed;
+
     public float gravity;
 
     [Header("Dashing")]
