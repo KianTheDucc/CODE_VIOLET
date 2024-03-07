@@ -35,6 +35,8 @@ public class MovementData : ScriptableObject
 
     public float gravity;
 
+    [Range(0f, 1.5f)] public float CoyoteTime;
+
     [Header("Dashing")]
     [Space(5)]
 
@@ -81,4 +83,8 @@ public class MovementData : ScriptableObject
     public bool isWallJumping;
 
     public float WallJumpCooldown;
+
+    public float LastOnGroundTime;
+
+    public float LastOnWallTime;
 }

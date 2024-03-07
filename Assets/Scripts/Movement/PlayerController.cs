@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     #region OnStart
     private void Start()
     {
+        CoyoteTime();
         rb = GetComponent<Rigidbody2D>();
     }
     #endregion
@@ -37,20 +38,26 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update()
-    {   
-        if(rb.velocity.y < 0)
+    {
+        Timers();
+
+        if (rb.velocity.y < 0  && !Data.latchedToWall)
         {
             //Sets the gravity for when the player is falling
             rb.gravityScale = Data.gravity;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
         }
+        CoyoteTime();
 
         if (IsGrounded())
         {
+
             //Resets gravity if on the ground
             rb.gravityScale = 1;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
         }
+
+
 
         if (!Data.dashing)
         {
@@ -60,6 +67,34 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    #endregion
+
+    #region Coyote Time
+
+    public void CoyoteTime()
+    {
+        if (IsGrounded())
+        {
+            //Sets the ground timer to coyote time for more forgiving jumps
+            Data.LastOnGroundTime = Data.CoyoteTime;
+        }
+        if (IsWallJumpWall())
+        {
+            //Sets the WallJumpTimer to coyote time for more forgiving wall jumps
+            Data.LastOnWallTime = Data.CoyoteTime;
+        }
+    }
+
+    #endregion
+
+    #region PlayerState Timers
+
+    public void Timers()
+    {
+        Data.LastOnGroundTime -= Time.deltaTime;
+        Data.LastOnWallTime -= Time.deltaTime;
+    }
+
     #endregion
 
     #region Run
@@ -214,8 +249,9 @@ public class PlayerController : MonoBehaviour
         if (jumpInput)
         {
 
-            if (IsGrounded() && !Data.hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
+            if (Data.LastOnGroundTime > 0 && !Data.hasJumped && !GetComponent<KnockbackWorking>().hasWallJumped)
             {
+                Data.LastOnGroundTime = 0;
                 Data.InitialPlayerYHeight = transform.position.y;
                 Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
                 Debug.Log("Jump Registered");
@@ -252,6 +288,7 @@ public class PlayerController : MonoBehaviour
         //Checks that the player isn't grounded and it is a wall they can slide on
         if (IsWallJumpWall()  && !IsGrounded() && xDir != 0)
         {
+            
             Data.latchedToWall = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Data.WallSlidingSpeed, float.MaxValue));
         }
@@ -292,8 +329,10 @@ public class PlayerController : MonoBehaviour
         //Makes the force apply in the required direction
         force.x *= dir;
 
-        if (IsWallJumpWall() && WJInput) 
+        if (Data.LastOnWallTime > 0 && WJInput) 
         {
+            Data.LastOnWallTime = 0;
+
             if(Mathf.Sign(rb.velocity.x) != Mathf.Sign(force.x))
             {
                 force.x -= rb.velocity.x;
