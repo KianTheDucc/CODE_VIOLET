@@ -10,7 +10,7 @@ public class KeyBehaviour : MonoBehaviour
     void OnCollisionEnter2D(Collision2D Other)
     {
         Debug.Log("Obtained key");
-        playerRef.GetComponent<Inventory>().keyList.Add(keyColor);
+        playerRef.GetComponent<InventoryManager>().keyList.Add(keyColor);
         Destroy(this.gameObject);
     }
 }

@@ -20,7 +20,7 @@ public class DoorBehaviour : MonoBehaviour
     {
         Debug.Log("Door Collision");
         
-        if (playerRef.GetComponent<Inventory>().keyList.Contains(this.tag))
+        if (playerRef.GetComponent<InventoryManager>().keyList.Contains(this.tag))
         {
             doorAnim.SetBool("doorOpen", true);
             
