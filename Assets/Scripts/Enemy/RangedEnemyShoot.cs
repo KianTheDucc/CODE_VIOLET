@@ -7,6 +7,8 @@ public class RangedEnemyShoot : MonoBehaviour
 {
     private bool alert;
     public GameObject bullet;
+    public GameObject RangedEnemy;
+    private bool canShoot = true;
     [SerializeField] private float power;
     [SerializeField] private float shotDelay;
     // Start is called before the first frame update
@@ -18,7 +20,7 @@ public class RangedEnemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        alert = GameObject.Find("Ranged_Enemy").GetComponent<RangedHit>().isAlert;
+        alert = RangedEnemy.GetComponent<RangedHit>().isAlert;
 
         if (alert)
         {
@@ -28,14 +30,19 @@ public class RangedEnemyShoot : MonoBehaviour
 
     private IEnumerator shootDelay()
     {
-        Shoot();
-        yield return new WaitForSeconds(shotDelay);
+        if (canShoot)
+        {
+            Shoot();
+            canShoot = false;
+            yield return new WaitForSeconds(shotDelay);
+            canShoot = true;
+        }
     }
     public void Shoot()
     {
         Vector2 Direction;
 
-        Direction = transform.position - GameObject.Find("Player").transform.position;
+        Direction = transform.position + GameObject.Find("Player").transform.position;
 
         Direction.Normalize();
 
