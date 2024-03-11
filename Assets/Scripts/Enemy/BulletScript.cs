@@ -9,6 +9,8 @@ public class BulletScript : MonoBehaviour
     public LayerMask WJW;
     [SerializeField] private int Damage;
     private Rigidbody2D rb;
+
+    private bool reflected;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,17 +24,24 @@ public class BulletScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == wall.value || collision.gameObject.layer == WJW.value || collision.gameObject.layer == ground.value)
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("WJW"))
         {
             Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CombatScript>().TakeDamage(Damage);
+            Destroy(this.gameObject);
         }
-        else if (collision.gameObject.name == "Attack")
+        else if (collision.gameObject.CompareTag("Attack"))
         {
+            reflected = true;
             rb.velocity = -rb.velocity;
+        }
+        if (reflected && collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            Destroy(this.gameObject);
         }
     }
 }

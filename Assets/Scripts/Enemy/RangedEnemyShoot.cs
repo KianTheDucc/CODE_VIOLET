@@ -42,7 +42,7 @@ public class RangedEnemyShoot : MonoBehaviour
     {
         Vector2 Direction;
 
-        Direction = transform.position + GameObject.Find("Player").transform.position;
+        Direction = transform.position - GameObject.Find("Player").transform.position;
 
         Direction.Normalize();
 
@@ -50,6 +50,6 @@ public class RangedEnemyShoot : MonoBehaviour
 
         GameObject bulletProjectile = Instantiate(bullet, transform.position, Quaternion.AngleAxis(angle, Vector3.forward), transform);
         Rigidbody2D rb = bulletProjectile.transform.GetComponent<Rigidbody2D>();
-        rb.AddForce(Direction * power, ForceMode2D.Impulse);
+        rb.AddForce(-(Direction * power), ForceMode2D.Impulse);
     }
 }
