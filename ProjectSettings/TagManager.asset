@@ -9,6 +9,10 @@ TagManager:
   - Green
   - Red
   - Enemy
+  - Attack
+  - WJW
+  - Wall
+  - Ground
   layers:
   - Default
   - TransparentFX
