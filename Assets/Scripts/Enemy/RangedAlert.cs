@@ -9,7 +9,7 @@ public class RangedHit : MonoBehaviour
     public LayerMask player;
     private float angleIncrement;
     public float LOSAngle;
-    private bool isAlert;
+    public bool isAlert;
 
     // Start is called before the first frame update
     void Start()
