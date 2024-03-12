@@ -1,3 +1,5 @@
+// Credit to https://www.youtube.com/@NightRunStudio for his Inventory System Tutorial series.
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +12,12 @@ public class Item : MonoBehaviour
     [SerializeField]
     private int quantity;
 
+    [SerializeField]
+    private Sprite sprite;
+
+    [TextArea]
+    [SerializeField]
+    private string itemDescription;
 
     private InventoryManager inventoryManager;
 
@@ -22,7 +30,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            inventoryManager.AddItem(itemName, quantity, transform.GetComponent<SpriteRenderer>().sprite);
+            inventoryManager.AddItem(itemName, quantity, transform.GetComponent<SpriteRenderer>().sprite, itemDescription);
             Destroy(this.gameObject);
         }
     }
