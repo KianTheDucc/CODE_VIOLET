@@ -16,6 +16,9 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isFull;
     public string itemDescription;
 
+    [SerializeField]
+    private int maxNumberOfItems;  // Defines the size of the slot, allows you to stack them
+
 
     //======ITEM SLOT======//
     [SerializeField]
@@ -39,18 +42,52 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.itemSprite = itemSprite;
-        this.itemDescription = itemDescription;
-        isFull = true;
+        // CHeck to see if the slot is already full
+        if (isFull)
+            return quantity;
 
-        quantityText.text = quantity.ToString();
-        quantityText.enabled = true;
+        //Update Name
+        this.itemName = itemName;
+
+        // Update Image
+        this.itemSprite = itemSprite;
         itemImage.sprite = itemSprite;
         itemImage.enabled = true;
+
+        // Update Description
+        this.itemDescription = itemDescription;
+
+        // Update Quantity
+
+        if (this.quantity == 0) 
+        {
+            this.quantity = 1;
+        }
+        else
+        {
+            this.quantity += quantity;
+        }
+
+        if (this.quantity >= maxNumberOfItems)
+        {
+            quantityText.text = maxNumberOfItems.ToString();
+            quantityText.enabled = true;
+            isFull = true;
+
+            // Return leftover items
+            int extraItems = this.quantity - maxNumberOfItems;
+            this.quantity = maxNumberOfItems;
+            return extraItems;
+        }
+
+        // Update Quantity Text
+        quantityText.text = this.quantity.ToString();
+        quantityText.enabled = true;
+
+        return 0;
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
