@@ -7,21 +7,20 @@ public class RangedHit : MonoBehaviour
 {
     public float LOSDistance;
     public LayerMask player;
+    public GameObject PlayerGO;
     private float angleIncrement;
     public float LOSAngle;
     public bool isAlert;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        PlayerGO = GameObject.Find("Player");
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (RangedLOS())
         {
+            lookAtPlayer();
             Alerted();
         }
     }
@@ -29,6 +28,21 @@ public class RangedHit : MonoBehaviour
     public void Alerted()
     {
         Debug.Log("alerted");
+    }
+
+    public void lookAtPlayer()
+    {
+        Vector2 Direction = PlayerGO.transform.position - transform.position;
+
+        float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+        if (angle < 90)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
     }
 
     #region CONDITIONS
