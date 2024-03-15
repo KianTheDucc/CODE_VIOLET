@@ -24,7 +24,14 @@ public class EnemyHitScript : MonoBehaviour
         }
         if (other.tag == "Player" && playerHit == true)
         {
-            other.gameObject.GetComponent<CombatScript>().DamagePlayer(EnemyDamage);
+            if (other.gameObject.GetComponent<CombatScript>().curHealth > 0)
+            {
+                other.gameObject.GetComponent<CombatScript>().DamagePlayer(EnemyDamage);
+            }
+            else
+            {
+                Debug.Log("You died!");
+            }
             Debug.Log("Player Hit");
             playerHit = false;
         }
