@@ -5,6 +5,8 @@ public class SceneChange : MonoBehaviour
 {
     public Animator animator;
 
+    public string nextSceneName;
+
     private GameObject sceneChangeTrigger;
 
     private int loadLevel;
@@ -27,7 +29,7 @@ public class SceneChange : MonoBehaviour
     //}
     public void fadeBetweenLevels ()
     {
-        loadLevel = SceneManager.GetActiveScene().buildIndex + 1; // So the script knows which level to transition to
+        SceneManager.LoadScene(nextSceneName); // So the script knows which level to transition to
         animator.SetTrigger("FadeOut"); // Triggers the relevant animation
     }
 
