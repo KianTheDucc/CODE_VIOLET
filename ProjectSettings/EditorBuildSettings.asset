@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Herbie Tutorial test.unity
     guid: a40b95d322c53e44eb59c3f9f4825ac9
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Scenes/Level_1.unity
     guid: b545e08cf3743184d9d6790330cfbb06
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
+    path: Assets/Scenes/Level_2.unity
     guid: 70e31489e7ce57c48b7ca0be39537e0b
   m_configObjects: {}
