@@ -7,6 +7,8 @@ public class SceneChange : MonoBehaviour
 
     public string nextSceneName;
 
+    public string nextSpawnLocationName;
+
     private GameObject sceneChangeTrigger;
 
     private int loadLevel;
@@ -19,6 +21,7 @@ public class SceneChange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PlayerPrefs.SetString("SpawnLocation", nextSpawnLocationName);
         fadeBetweenLevels();
     }
 

@@ -10106,7 +10106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 812303622}
-  nextSceneName: 
+  nextSceneName: LabCore_Level
+  nextSpawnLocationName: Top_R_Door
 --- !u!1 &938589916
 GameObject:
   m_ObjectHideFlags: 0
