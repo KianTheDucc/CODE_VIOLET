@@ -18,9 +18,10 @@ public class RangedHit : MonoBehaviour
     }
     void Update()
     {
+        lookAtPlayer();
+
         if (RangedLOS())
         {
-            lookAtPlayer();
             Alerted();
         }
     }
@@ -35,7 +36,8 @@ public class RangedHit : MonoBehaviour
         Vector2 Direction = PlayerGO.transform.position - transform.position;
 
         float angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
-        if (angle < 90)
+        Debug.Log(angle);
+        if (angle > 90 || angle < -175)
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
@@ -54,6 +56,10 @@ public class RangedHit : MonoBehaviour
         if(transform.rotation.eulerAngles.y == 180f)
         {
             LOSAngle = 360f;
+        }
+        else if (transform.rotation.eulerAngles.y == 0f)
+        {
+            LOSAngle = 90f;
         }
             for (float angle = 0f; angle < LOSAngle; angle += angleIncrement)
             {
