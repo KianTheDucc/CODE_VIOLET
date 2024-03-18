@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
     public Animator animator;
+
+    public GameObject Player;
 
     public string nextSceneName;
 
@@ -15,6 +18,7 @@ public class SceneChange : MonoBehaviour
 
     private void Start()
     {
+        GameObject.FindGameObjectWithTag("Player");
         sceneChangeTrigger = GameObject.Find("BlackFade");
         animator = sceneChangeTrigger.GetComponent<Animator>();
     }
@@ -22,7 +26,12 @@ public class SceneChange : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerPrefs.SetString("SpawnLocation", nextSpawnLocationName);
-        fadeBetweenLevels();
+
+        string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
+
+        Debug.Log(spawnLocation);
+        StartCoroutine(fadeBetweenLevels());
+
     }
 
     //private int LoadNextScene()
@@ -30,15 +39,29 @@ public class SceneChange : MonoBehaviour
     //    //int nextLevel = SceneManager.GetActiveScene().buildIndex - 1;
     //    //return nextLevel;
     //}
-    public void fadeBetweenLevels ()
+
+    public IEnumerator fadeBetweenLevels()
     {
-        SceneManager.LoadScene(nextSceneName); // So the script knows which level to transition to
+        AsyncOperation asyncLevelLoad = SceneManager.LoadSceneAsync(nextSceneName); // So the script knows which level to transition to
         animator.SetTrigger("FadeOut"); // Triggers the relevant animation
+
+        string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
+
+        Debug.Log(spawnLocation);
+
+        while (!asyncLevelLoad.isDone)
+        {
+            yield return null;
+        }
+
+        Player.transform.position = GameObject.Find(spawnLocation).transform.position;
+        yield return null;
     }
 
     public void onFadeComplete ()
     {
-        loadLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(loadLevel);
+        fadeBetweenLevels();
+        //loadLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        //SceneManager.LoadScene(loadLevel);
     }
 }

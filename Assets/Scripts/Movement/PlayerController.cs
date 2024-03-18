@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-   
+
     #region Components
     private Rigidbody2D rb;
     public Rigidbody2D PlayerBody;
@@ -23,6 +23,16 @@ public class PlayerController : MonoBehaviour
     {
         CoyoteTime();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+
+        string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
+
+        Debug.Log(spawnLocation);
+        if (spawnLocation != "none")
+            transform.position = GameObject.Find(spawnLocation).transform.position;
     }
     #endregion
 
@@ -41,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         Timers();
 
-        if (rb.velocity.y < 0  && !Data.latchedToWall)
+        if (rb.velocity.y < 0 && !Data.latchedToWall)
         {
             //Sets the gravity for when the player is falling
             rb.gravityScale = Data.gravity;
@@ -134,7 +144,7 @@ public class PlayerController : MonoBehaviour
 
             //Difference between current speed and top speed
             float speedDif = targetSpeed - rb.velocity.x;
-            
+
 
             //The force to add to the player each frame
             float movement = speedDif * acceleration;
@@ -204,7 +214,7 @@ public class PlayerController : MonoBehaviour
 
     #region Dash
     private void startDash()
-    { 
+    {
         float xDir = Input.GetAxisRaw("Horizontal");
         if (Input.GetButton("Dash") && Data.canDash)
         {
@@ -261,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped|| rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || transform.position.y > Data.MaxJumpHeight && !GetComponent<KnockbackWorking>().hasWallJumped && !Data.latchedToWall)
+        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || transform.position.y > Data.MaxJumpHeight && !GetComponent<KnockbackWorking>().hasWallJumped && !Data.latchedToWall)
         {
             if (!Data.latchedToWall && !Data.isWallJumping)
             {
@@ -282,9 +292,9 @@ public class PlayerController : MonoBehaviour
         var xDir = Input.GetAxisRaw("Horizontal");
 
         //Checks that the player isn't grounded and it is a wall they can slide on
-        if (IsWallJumpWall()  && !IsGrounded() && xDir != 0)
+        if (IsWallJumpWall() && !IsGrounded() && xDir != 0)
         {
-            
+
             Data.latchedToWall = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Data.WallSlidingSpeed, float.MaxValue));
         }
@@ -314,35 +324,35 @@ public class PlayerController : MonoBehaviour
         {
             dir = 1;
         }
-        else if(IsWallJumpWallRight())
+        else if (IsWallJumpWallRight())
         {
             dir = -1;
         }
 
         //defining what speed in both directions to make the player
         Vector2 force = new Vector2(Data.wallJumpX, Data.wallJumpY);
-        
+
         //Makes the force apply in the required direction
         force.x *= dir;
 
-        if (Data.LastOnWallTime > 0 && WJInput) 
+        if (Data.LastOnWallTime > 0 && WJInput)
         {
             Data.LastOnWallTime = 0;
 
-            if(Mathf.Sign(rb.velocity.x) != Mathf.Sign(force.x))
+            if (Mathf.Sign(rb.velocity.x) != Mathf.Sign(force.x))
             {
                 force.x -= rb.velocity.x;
             }
 
-            
-            if(rb.velocity.y < 0 && !Data.latchedToWall)
+
+            if (rb.velocity.y < 0 && !Data.latchedToWall)
             {
                 force.y -= rb.velocity.y;
             }
 
             GetComponent<KnockbackWorking>().hasWallJumped = true;
 
-            Data.InitialPlayerYHeight = transform.position.y; 
+            Data.InitialPlayerYHeight = transform.position.y;
 
             Data.MaxJumpHeight = Data.InitialPlayerYHeight + Data.MaxHeight;
 
@@ -373,7 +383,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsWallJumpWall()
     {
-        if  (IsWallJumpWallLeft()  || IsWallJumpWallRight())
+        if (IsWallJumpWallLeft() || IsWallJumpWallRight())
         {
             return true;
         }
@@ -418,4 +428,9 @@ public class PlayerController : MonoBehaviour
         return hit.collider != null;
     }
     #endregion
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetString("SpawnLocation", "none");
+    }
 }
