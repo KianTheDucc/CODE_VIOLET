@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     {
         Timers();
 
-        if (rb.velocity.y < 0 && !Data.latchedToWall)
+        if (rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped)
         {
             //Sets the gravity for when the player is falling
             rb.gravityScale = Data.gravity;
@@ -271,11 +271,15 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        else if (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped || transform.position.y > Data.MaxJumpHeight && !GetComponent<KnockbackWorking>().hasWallJumped && !Data.latchedToWall)
+        else if (
+            (jumpInputReleased && rb.velocity.y > 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped) || 
+            (rb.velocity.y < 0 && !Data.latchedToWall && !GetComponent<KnockbackWorking>().hasWallJumped) || 
+            (transform.position.y > Data.MaxJumpHeight && !GetComponent<KnockbackWorking>().hasWallJumped && !Data.latchedToWall)
+            )
         {
             if (!Data.latchedToWall && !Data.isWallJumping)
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
+                //rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.gravityScale = Data.gravity;
             }
 
@@ -292,11 +296,12 @@ public class PlayerController : MonoBehaviour
         var xDir = Input.GetAxisRaw("Horizontal");
 
         //Checks that the player isn't grounded and it is a wall they can slide on
-        if (IsWallJumpWall() && !IsGrounded() && xDir != 0)
+        if (IsWallJumpWall() && !IsGrounded() && xDir != 0 && rb.velocity.y < 0)
         {
-
+            
             Data.latchedToWall = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Data.WallSlidingSpeed, float.MaxValue));
+
+            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * Data.WallSlidingSpeed);
         }
         else
         {
@@ -345,10 +350,10 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (rb.velocity.y < 0 && !Data.latchedToWall)
-            {
-                force.y -= rb.velocity.y;
-            }
+            //if (rb.velocity.y < 0 && !Data.latchedToWall)
+            //{
+            //    force.y -= rb.velocity.y;
+            //}
 
             GetComponent<KnockbackWorking>().hasWallJumped = true;
 
