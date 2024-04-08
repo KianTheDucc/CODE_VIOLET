@@ -13,6 +13,7 @@ TagManager:
   - WJW
   - Wall
   - Ground
+  - Collector
   layers:
   - Default
   - TransparentFX
