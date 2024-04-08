@@ -37,8 +37,11 @@ public class DataStorageManager : MonoBehaviour
 
         instance = this;
 
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+
         DontDestroyOnLoad(gameObject);
     }
+
 
     private void OnEnable()
     {

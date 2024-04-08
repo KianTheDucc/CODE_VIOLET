@@ -12,6 +12,7 @@ public class GameData
 
     public GameData ()
     {
+        LastUpdated = 0;
         playerPosition = Vector3.zero;
         currentScene = "Intro_Level";
     }
