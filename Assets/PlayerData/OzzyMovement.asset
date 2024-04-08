@@ -31,8 +31,8 @@ MonoBehaviour:
   minJumpForce: 0
   jumpforce: 17
   MaxHeight: 5
-  maxFallSpeed: 30
-  gravity: 40
+  maxFallSpeed: 20
+  gravity: 9
   CoyoteTime: 0.25
   dashSpeed: 40
   dashTime: 0.3
@@ -45,8 +45,8 @@ MonoBehaviour:
   WJcastDistance: 0.7
   hasJumped: 0
   jumping: 0
-  InitialPlayerYHeight: -312.81427
-  MaxJumpHeight: -307.81427
+  InitialPlayerYHeight: -198.52487
+  MaxJumpHeight: -193.52487
   dashing: 0
   canDash: 0
   canWallJump: 1
@@ -54,4 +54,4 @@ MonoBehaviour:
   isWallJumping: 0
   WallJumpCooldown: 0
   LastOnGroundTime: 0.25
-  LastOnWallTime: -1.4658335
+  LastOnWallTime: -212.06503
