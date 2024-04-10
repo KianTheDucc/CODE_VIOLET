@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 42316765}
   - component: {fileID: 42316767}
   - component: {fileID: 42316766}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (24)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 94235972}
   - component: {fileID: 94235974}
   - component: {fileID: 94235973}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (52)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1436,9 +1436,9 @@ GameObject:
   - component: {fileID: 117867796}
   - component: {fileID: 117867798}
   - component: {fileID: 117867797}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (43)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1986,6 +1986,112 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b16cac721def54a864811345e52d4e, type: 3}
+--- !u!1 &164869550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164869553}
+  - component: {fileID: 164869552}
+  - component: {fileID: 164869551}
+  m_Layer: 0
+  m_Name: WallPipesAnim_1_0 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &164869551
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164869550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 887f55e6b3c22e94e939033c0f5effc7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &164869552
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164869550}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -729904477, guid: e18115686b505ec478bd69ea986762e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &164869553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164869550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 464.65, y: -206.46, z: 0}
+  m_LocalScale: {x: 17.84747, y: 17.982483, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &173390908
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,7 +4062,7 @@ GameObject:
   - component: {fileID: 333296503}
   - component: {fileID: 333296505}
   - component: {fileID: 333296504}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (41)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4192,7 +4298,7 @@ GameObject:
   - component: {fileID: 369053996}
   - component: {fileID: 369053998}
   - component: {fileID: 369053997}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (73)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5078,7 +5184,7 @@ GameObject:
   - component: {fileID: 438271733}
   - component: {fileID: 438271735}
   - component: {fileID: 438271734}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (38)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5558,9 +5664,9 @@ GameObject:
   - component: {fileID: 468543738}
   - component: {fileID: 468543740}
   - component: {fileID: 468543739}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (30)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6211,7 +6317,7 @@ GameObject:
   - component: {fileID: 548957645}
   - component: {fileID: 548957647}
   - component: {fileID: 548957646}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (37)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6341,7 +6447,7 @@ GameObject:
   - component: {fileID: 562798082}
   - component: {fileID: 562798083}
   - component: {fileID: 562798084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hazard Respawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6557,6 +6663,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &591860869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591860872}
+  - component: {fileID: 591860871}
+  - component: {fileID: 591860870}
+  m_Layer: 0
+  m_Name: WallPipesAnim_1_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &591860870
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591860869}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 887f55e6b3c22e94e939033c0f5effc7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &591860871
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591860869}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -729904477, guid: e18115686b505ec478bd69ea986762e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &591860872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591860869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 424.7, y: -195.81, z: 0}
+  m_LocalScale: {x: 17.84747, y: 17.982483, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &612801591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1112501737375562080, guid: ba08bc047dfe25c4790fdc99af63b874, type: 3}
@@ -6668,9 +6880,9 @@ GameObject:
   - component: {fileID: 621054628}
   - component: {fileID: 621054630}
   - component: {fileID: 621054629}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (2)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6876,9 +7088,9 @@ GameObject:
   - component: {fileID: 636339703}
   - component: {fileID: 636339705}
   - component: {fileID: 636339704}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (1)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7270,7 +7482,7 @@ GameObject:
   - component: {fileID: 671822882}
   - component: {fileID: 671822884}
   - component: {fileID: 671822883}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (53)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7734,6 +7946,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &728912003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728912006}
+  - component: {fileID: 728912005}
+  - component: {fileID: 728912004}
+  m_Layer: 0
+  m_Name: WallPipesAnim_2_1_0 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &728912004
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728912003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35322f4ee8c8e4445ba978bc25d0f3e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &728912005
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728912003}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 929628509, guid: 5eb6cfb8d00c6d04085b658866829290, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &728912006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728912003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 424.78, y: -202.46, z: 0}
+  m_LocalScale: {x: 18.678825, y: 15.670465, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744310029
 GameObject:
   m_ObjectHideFlags: 0
@@ -7745,9 +8063,9 @@ GameObject:
   - component: {fileID: 744310030}
   - component: {fileID: 744310032}
   - component: {fileID: 744310031}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8566,9 +8884,9 @@ GameObject:
   - component: {fileID: 808411034}
   - component: {fileID: 808411036}
   - component: {fileID: 808411035}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (51)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9135,7 +9453,7 @@ GameObject:
   - component: {fileID: 831287897}
   m_Layer: 3
   m_Name: Toxic Waste (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9393,9 +9711,9 @@ GameObject:
   - component: {fileID: 844122480}
   - component: {fileID: 844122482}
   - component: {fileID: 844122481}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (46)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9523,9 +9841,9 @@ GameObject:
   - component: {fileID: 861555488}
   - component: {fileID: 861555490}
   - component: {fileID: 861555489}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (49)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10804,9 +11122,9 @@ GameObject:
   - component: {fileID: 974546428}
   - component: {fileID: 974546430}
   - component: {fileID: 974546429}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (4)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11119,6 +11437,112 @@ Transform:
   m_Father: {fileID: 677291821}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &999321405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999321408}
+  - component: {fileID: 999321407}
+  - component: {fileID: 999321406}
+  m_Layer: 0
+  m_Name: WallPipesAnim_2_1_0 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &999321406
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999321405}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35322f4ee8c8e4445ba978bc25d0f3e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &999321407
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999321405}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 929628509, guid: 5eb6cfb8d00c6d04085b658866829290, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &999321408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999321405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 449.53, y: -213.11002, z: 0}
+  m_LocalScale: {x: 18.678825, y: 15.670465, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1007288009
 GameObject:
   m_ObjectHideFlags: 0
@@ -11390,7 +11814,7 @@ GameObject:
   - component: {fileID: 1011039696}
   - component: {fileID: 1011039698}
   - component: {fileID: 1011039697}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (49)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -12379,9 +12803,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072711893}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12666,9 +13090,9 @@ GameObject:
   - component: {fileID: 1094049236}
   - component: {fileID: 1094049238}
   - component: {fileID: 1094049237}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (42)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12865,9 +13289,9 @@ GameObject:
   - component: {fileID: 1129642584}
   - component: {fileID: 1129642586}
   - component: {fileID: 1129642585}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (48)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13500,9 +13924,9 @@ GameObject:
   - component: {fileID: 1177998608}
   - component: {fileID: 1177998610}
   - component: {fileID: 1177998609}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (40)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14375,9 +14799,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1278585552}
   - component: {fileID: 1278585553}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (3)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14460,7 +14884,7 @@ GameObject:
   - component: {fileID: 1281869032}
   - component: {fileID: 1281869034}
   - component: {fileID: 1281869033}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (37)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -14624,9 +15048,9 @@ GameObject:
   - component: {fileID: 1284455170}
   - component: {fileID: 1284455172}
   - component: {fileID: 1284455171}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (44)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14754,9 +15178,9 @@ GameObject:
   - component: {fileID: 1298129308}
   - component: {fileID: 1298129310}
   - component: {fileID: 1298129309}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (45)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14884,9 +15308,9 @@ GameObject:
   - component: {fileID: 1308986121}
   - component: {fileID: 1308986123}
   - component: {fileID: 1308986122}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (5)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15003,6 +15427,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1322856574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322856577}
+  - component: {fileID: 1322856576}
+  - component: {fileID: 1322856575}
+  m_Layer: 0
+  m_Name: WallPipesAnim_2_1_0 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1322856575
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322856574}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35322f4ee8c8e4445ba978bc25d0f3e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1322856576
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322856574}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 929628509, guid: 5eb6cfb8d00c6d04085b658866829290, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1322856577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322856574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 464.72998, y: -213.11002, z: 0}
+  m_LocalScale: {x: 18.678825, y: 15.670465, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1327277369
 GameObject:
   m_ObjectHideFlags: 0
@@ -15014,9 +15544,9 @@ GameObject:
   - component: {fileID: 1327277370}
   - component: {fileID: 1327277372}
   - component: {fileID: 1327277371}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (2)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15142,9 +15672,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328083957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16316,9 +16846,9 @@ GameObject:
   - component: {fileID: 1446153009}
   - component: {fileID: 1446153011}
   - component: {fileID: 1446153010}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (3)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17416,9 +17946,9 @@ GameObject:
   - component: {fileID: 1569625496}
   - component: {fileID: 1569625498}
   - component: {fileID: 1569625497}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (7)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17577,7 +18107,7 @@ GameObject:
   - component: {fileID: 1579543046}
   - component: {fileID: 1579543048}
   - component: {fileID: 1579543047}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (54)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -17707,9 +18237,9 @@ GameObject:
   - component: {fileID: 1582240727}
   - component: {fileID: 1582240729}
   - component: {fileID: 1582240728}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (34)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17837,7 +18367,7 @@ GameObject:
   - component: {fileID: 1587972285}
   - component: {fileID: 1587972287}
   - component: {fileID: 1587972286}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (44)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -18043,7 +18573,7 @@ GameObject:
   - component: {fileID: 1600193724}
   - component: {fileID: 1600193726}
   - component: {fileID: 1600193725}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (58)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -18249,9 +18779,9 @@ GameObject:
   - component: {fileID: 1619954132}
   - component: {fileID: 1619954134}
   - component: {fileID: 1619954133}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Pillar (6)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18987,9 +19517,9 @@ GameObject:
   - component: {fileID: 1730698373}
   - component: {fileID: 1730698375}
   - component: {fileID: 1730698374}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (29)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20167,7 +20697,7 @@ GameObject:
   - component: {fileID: 1915937573}
   - component: {fileID: 1915937575}
   - component: {fileID: 1915937574}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (34)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -20429,9 +20959,9 @@ GameObject:
   - component: {fileID: 1934933848}
   - component: {fileID: 1934933850}
   - component: {fileID: 1934933849}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (41)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20575,9 +21105,9 @@ GameObject:
   - component: {fileID: 1946342251}
   - component: {fileID: 1946342253}
   - component: {fileID: 1946342252}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (59)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21000,9 +21530,9 @@ GameObject:
   - component: {fileID: 1964582480}
   - component: {fileID: 1964582482}
   - component: {fileID: 1964582481}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (32)
-  m_TagString: Wall
+  m_TagString: WJW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21130,7 +21660,7 @@ GameObject:
   - component: {fileID: 1965813448}
   - component: {fileID: 1965813450}
   - component: {fileID: 1965813449}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Square (39)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -21492,6 +22022,112 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1997750135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1997750138}
+  - component: {fileID: 1997750137}
+  - component: {fileID: 1997750136}
+  m_Layer: 0
+  m_Name: WallPipesAnim_1_0 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1997750136
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997750135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 887f55e6b3c22e94e939033c0f5effc7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1997750137
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997750135}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -729904477, guid: e18115686b505ec478bd69ea986762e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1997750138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997750135}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 449.45, y: -206.46, z: 0}
+  m_LocalScale: {x: 17.84747, y: 17.982483, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2003924330
 GameObject:
   m_ObjectHideFlags: 0
@@ -21909,7 +22545,7 @@ GameObject:
   - component: {fileID: 2052896987}
   - component: {fileID: 2052896989}
   - component: {fileID: 2052896988}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Square (26)
   m_TagString: Wall
   m_Icon: {fileID: 0}
