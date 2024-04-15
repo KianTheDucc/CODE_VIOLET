@@ -103,7 +103,7 @@ public class FileDataHandler
             }
             else
             {
-                throw new Exception("Save f ile could not be verified and backup could not be created.");
+                throw new Exception("Save file could not be verified and backup could not be created.");
             }
         }
         catch (Exception ex)

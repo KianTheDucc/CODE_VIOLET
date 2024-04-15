@@ -11,3 +11,6 @@ Please make sure you place all of your Terrain in a folder called "Terrain" or "
 For full details on this project's settings, please read the Changelog.md
  
 Do you have any suggestions for improvements? Please submit a pull request!
+
+Save and load system heavily inspired by ShapedByRainStudios
+https://www.youtube.com/watch?v=aUi9aijvpgs&list=PL3viUl9h9k7-tMGkSApPdu4hlUBagKial

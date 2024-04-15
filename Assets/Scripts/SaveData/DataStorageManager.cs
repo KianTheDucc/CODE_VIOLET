@@ -18,7 +18,7 @@ public class DataStorageManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
     
-    private string SelectedProfileID = "";
+    public string SelectedProfileID = "";
 
 
 
