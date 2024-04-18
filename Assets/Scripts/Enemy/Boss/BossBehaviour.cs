@@ -8,6 +8,7 @@ public class BossBehaviour : MonoBehaviour
     private GameObject Player;
     private GameObject Boss;
     private GameObject BossAttack;
+    public GameObject BossLaser;
 
     bool BossAttacking;
 
@@ -17,6 +18,7 @@ public class BossBehaviour : MonoBehaviour
     public float SlamJumpHeight;
     public float SlamTelegraphTime;
     public float MeleeTelegraphTime;
+    public float laserTelegraphTime;
     public float bossCooldownTime;
 
 
@@ -54,7 +56,9 @@ public class BossBehaviour : MonoBehaviour
             {
                 possibleBossChoices = 1;
             }
+
             BossChoice = Random.Range(0, possibleBossChoices);
+
             switch (BossChoice)
             {
                 case 0:
@@ -76,13 +80,18 @@ public class BossBehaviour : MonoBehaviour
     public IEnumerator MeleeAttack()
     {
         BossAttacking = true;
-        //TBA
         yield return new WaitForSeconds(MeleeTelegraphTime);
 
+        // insert boss melee telegraph here
+
         BossAttack.SetActive(true);
+
         yield return new WaitForSeconds(2);
+
         BossAttack.SetActive(false);
+
         yield return new WaitForSeconds(bossCooldownTime);
+
         BossAttacking = false;
     }
 
@@ -101,8 +110,13 @@ public class BossBehaviour : MonoBehaviour
 
     public IEnumerator laserAttack()
     {
-        //TBA
-        yield return null;
+        BossAttacking = true;
+        yield return new WaitForSeconds(laserTelegraphTime);
+        float angle = Mathf.Atan2(Player.transform.position.x - Boss.transform.position.x, Player.transform.position.y - Player.transform.position.y);
+        GameObject laserObject = Instantiate(BossLaser, Boss.transform);
+        laserObject.transform.eulerAngles = new Vector3(laserObject.transform.rotation.x, angle, laserObject.transform.rotation.z);
+        yield return new WaitForSeconds(bossCooldownTime);
+        BossAttacking = false;
     }
     #endregion
 
