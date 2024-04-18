@@ -1,18 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
     private GameObject Player;
     private GameObject Boss;
-    private GameObject BossAttack;
+    public GameObject BossAttack;
     public GameObject BossLaser;
+    public GameObject groundCheck;
 
-    bool BossAttacking;
+    public LayerMask groundMask;
 
-    private float possibleBossChoices;
+    public bool BossAttacking;
+
+    public bool isGrounded;
+
+    private int possibleBossChoices;
     private float BossChoice;
 
     public float SlamJumpHeight;
@@ -21,6 +28,11 @@ public class BossBehaviour : MonoBehaviour
     public float laserTelegraphTime;
     public float bossCooldownTime;
 
+    [Header("For JumpAttack")]
+    [SerializeField] private Vector2 BoxSize;
+
+    [Header("For Laser")]
+    [SerializeField] private float power;
 
     Rigidbody2D rb;
 
@@ -35,10 +47,19 @@ public class BossBehaviour : MonoBehaviour
         BossBehaviourTree();        
     }
 
+    private void FixedUpdate()
+    {
+        isGrounded = Physics2D.OverlapBox(groundCheck.transform.position, BoxSize,0, groundMask);
+        if (Boss.transform.position.x == Player.transform.position.x && BossAttacking)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.AddForce(new Vector2(0, -SlamJumpHeight), ForceMode2D.Impulse);
+        }
+    }
 
     public void BossBehaviourTree()
     {
-        if (!BossAttacking)
+        if (!BossAttacking && isGrounded)
         {
 
 
@@ -56,29 +77,35 @@ public class BossBehaviour : MonoBehaviour
             {
                 possibleBossChoices = 1;
             }
-
-            BossChoice = Random.Range(0, possibleBossChoices);
+            System.Random rand = new System.Random();
+            BossChoice = rand.Next(0, possibleBossChoices);
 
             switch (BossChoice)
             {
                 case 0:
+                    Debug.Log("1");
                     StartCoroutine(SlamAttack());
                     break;
                 case 1:
                     BossAttacking = true;
-
+                    Debug.Log("2");
                     StartCoroutine(laserAttack());
                     break;
                 case 2:
+                    Debug.Log("3");
                     BossAttacking = true;
                     StartCoroutine(MeleeAttack());
                     break;  
+                default:
+                    //Debug.Log(BossChoice);
+                    break;
             }
         }
     }
     #region Attacks
     public IEnumerator MeleeAttack()
     {
+        Debug.Log("2");
         BossAttacking = true;
         yield return new WaitForSeconds(MeleeTelegraphTime);
 
@@ -97,12 +124,19 @@ public class BossBehaviour : MonoBehaviour
 
     public IEnumerator SlamAttack()
     {
+        Debug.Log("0");
         BossAttacking = true;
         // add boss slam telegraph here
         yield return new WaitForSeconds(SlamTelegraphTime);
-        float distance = Boss.transform.position.x - Player.transform.position.x;
+        float distance = Player.transform.position.x - Boss.transform.position.x;
 
-        rb.AddForce(new Vector2(distance, SlamJumpHeight), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(distance/2, SlamJumpHeight/2), ForceMode2D.Impulse);
+
+        if (Boss.transform.position.x == Player.transform.position.x)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.AddForce(new Vector2(0, -SlamJumpHeight), ForceMode2D.Impulse);
+        }
 
         yield return new WaitForSeconds(bossCooldownTime);
         BossAttacking = false;
@@ -110,12 +144,24 @@ public class BossBehaviour : MonoBehaviour
 
     public IEnumerator laserAttack()
     {
+        Debug.Log("1");
+
         BossAttacking = true;
+
         yield return new WaitForSeconds(laserTelegraphTime);
+
         float angle = Mathf.Atan2(Player.transform.position.x - Boss.transform.position.x, Player.transform.position.y - Player.transform.position.y);
-        GameObject laserObject = Instantiate(BossLaser, Boss.transform);
-        laserObject.transform.eulerAngles = new Vector3(laserObject.transform.rotation.x, angle, laserObject.transform.rotation.z);
+
+        Vector2 Direction = transform.position - Player.transform.position;
+
+        GameObject bulletProjectile = Instantiate(BossLaser, transform.position, Quaternion.AngleAxis(angle, Vector3.forward), transform);
+
+        Rigidbody2D rbb = bulletProjectile.transform.GetComponent<Rigidbody2D>();
+
+        rbb.AddForce(-(Direction * power), ForceMode2D.Impulse);
+
         yield return new WaitForSeconds(bossCooldownTime);
+
         BossAttacking = false;
     }
     #endregion
