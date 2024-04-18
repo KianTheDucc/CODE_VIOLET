@@ -5,17 +5,28 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-    GameObject Player;
-    GameObject Boss;
-    Vector2 BossDistance;
+    private GameObject Player;
+    private GameObject Boss;
+    private GameObject BossAttack;
+
     bool BossAttacking;
+
     private float possibleBossChoices;
     private float BossChoice;
+
+    public float SlamJumpHeight;
+    public float SlamTelegraphTime;
+    public float MeleeTelegraphTime;
+    public float bossCooldownTime;
+
+
+    Rigidbody2D rb;
 
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Boss = this.gameObject;
+        rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -47,7 +58,6 @@ public class BossBehaviour : MonoBehaviour
             switch (BossChoice)
             {
                 case 0:
-                    BossAttacking = true;
                     StartCoroutine(SlamAttack());
                     break;
                 case 1:
@@ -65,14 +75,28 @@ public class BossBehaviour : MonoBehaviour
     #region Attacks
     public IEnumerator MeleeAttack()
     {
+        BossAttacking = true;
         //TBA
-        yield return null;
+        yield return new WaitForSeconds(MeleeTelegraphTime);
+
+        BossAttack.SetActive(true);
+        yield return new WaitForSeconds(2);
+        BossAttack.SetActive(false);
+        yield return new WaitForSeconds(bossCooldownTime);
+        BossAttacking = false;
     }
 
     public IEnumerator SlamAttack()
     {
-        //TBA
-        yield return null;
+        BossAttacking = true;
+        // add boss slam telegraph here
+        yield return new WaitForSeconds(SlamTelegraphTime);
+        float distance = Boss.transform.position.x - Player.transform.position.x;
+
+        rb.AddForce(new Vector2(distance, SlamJumpHeight), ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(bossCooldownTime);
+        BossAttacking = false;
     }
 
     public IEnumerator laserAttack()
@@ -81,6 +105,14 @@ public class BossBehaviour : MonoBehaviour
         yield return null;
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<CombatScript>().DamagePlayer(2);
+        }
+    }
 
     #region BossState
     public Vector2 playerDistance()
