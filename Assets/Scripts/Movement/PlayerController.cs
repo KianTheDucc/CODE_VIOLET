@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour, IDataStorage
+public class PlayerController : MonoBehaviour
 {
 
 
@@ -34,18 +34,6 @@ public class PlayerController : MonoBehaviour, IDataStorage
         Debug.Log(spawnLocation);
         if (spawnLocation != "none")
             transform.position = GameObject.Find(spawnLocation).transform.position;
-    }
-
-    public void LoadData(GameData data)
-    {
-        SceneManager.LoadScene(data.currentScene);
-        this.transform.position = data.playerPosition;
-    }
-    
-    public void SaveData(GameData data)
-    {
-        data.currentScene = SceneManager.GetActiveScene().name;
-        data.playerPosition = this.transform.position;
     }
     #endregion
 
