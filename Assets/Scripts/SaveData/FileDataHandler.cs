@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -117,7 +118,7 @@ public class FileDataHandler
         {
             return;
         }
-        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId);
         try
         {
             if (File.Exists(fullPath))

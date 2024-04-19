@@ -3064,10 +3064,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac88c8d5504a96439fe90481676fa7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveSlotsmenu: {fileID: 0}
-  newGameButton: {fileID: 0}
-  continueGameButton: {fileID: 0}
-  loadGameButton: {fileID: 0}
 --- !u!1 &1074451070
 GameObject:
   m_ObjectHideFlags: 0

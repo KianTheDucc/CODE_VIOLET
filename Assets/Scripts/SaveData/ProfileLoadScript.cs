@@ -19,7 +19,7 @@ public class ProfileLoadScript : MonoBehaviour
         
     }
 
-    /*public void LoadOrNewGame()
+    public void LoadOrNewGame()
     {
         DataStorageManager.instance.SelectedProfileID = SelectedProfileID;
         if (!DataStorageManager.instance.HasGameData())
@@ -30,5 +30,5 @@ public class ProfileLoadScript : MonoBehaviour
         {
             DataStorageManager.instance.LoadGame();
         }
-    }*/
+    }
 }
