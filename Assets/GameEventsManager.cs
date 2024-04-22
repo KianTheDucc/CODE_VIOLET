@@ -10,6 +10,8 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     private PlayerController playerController;
 
+    private Scene oldscene;
+
     private void Awake()
     {
         if (instance != null)
@@ -36,11 +38,12 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
     void OnSceneLoaded(Scene oldScene, Scene newScene)
     {
         playerController = FindObjectOfType<PlayerController>();
+        oldscene = oldScene;
     }
 
     public void LoadData(GameData gameData)
     {
-        if (gameData.currentScene == SceneManager.GetActiveScene().name)
+        if (gameData.currentScene == SceneManager.GetActiveScene().name && oldscene.name != "Core_Level")
         {
             playerController.transform.position = gameData.playerPosition;
         }
