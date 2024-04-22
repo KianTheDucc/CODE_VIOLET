@@ -148,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: 0
   player: {fileID: 6732873478134030930}
+  knockbackAmount: 2
   Damage: 1
 --- !u!1 &6732873478134030930
 GameObject:
@@ -165,6 +166,9 @@ GameObject:
   - component: {fileID: 4533990608726808419}
   - component: {fileID: 3417913815090003419}
   - component: {fileID: 1613472536959930902}
+  - component: {fileID: 576321576763604107}
+  - component: {fileID: 7059002395997715891}
+  - component: {fileID: 1268921371357478047}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -186,7 +190,7 @@ Transform:
   m_Children:
   - {fileID: 1182108178710628824}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &377815706503810411
 SpriteRenderer:
@@ -316,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerBody: {fileID: 8058714858480825155}
   Player: {fileID: 377815706503810411}
-  Data: {fileID: 11400000, guid: a9e12d071cf5df148a77ecb2805106e6, type: 2}
+  Data: {fileID: 11400000, guid: e9637eecea3945d49aa8318640092619, type: 2}
 --- !u!114 &4533990608726808419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: {fileID: 1556864253192931463}
   damageTime: 1
+  attackCD: 0
+  AttackDamage: 0
 --- !u!114 &1613472536959930902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,4 +369,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curHealth: 0
   MaxHealth: 6
+  entity: {fileID: 6732873478134030930}
+--- !u!114 &576321576763604107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732873478134030930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0959f1b57a04e741af7f8bbfa00f127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attack: {fileID: 1556864253192931463}
+  damageTime: 0.2
+  attackCD: 0.2
+  AttackDamage: 0
+--- !u!114 &7059002395997715891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732873478134030930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb82fbdcb7ea9734ba418bff9e358941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryMenu: {fileID: 0}
+  itemSlot: []
+  keyList: []
+--- !u!114 &1268921371357478047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732873478134030930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6ec0c8f85148e48b2329083683a1b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curHealth: 100
+  MaxHealth: 100
   entity: {fileID: 6732873478134030930}

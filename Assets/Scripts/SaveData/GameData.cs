@@ -11,7 +11,7 @@ public class GameData
 
     public GameData ()
     {
-        playerPosition = new Vector3(539.43f, -294.57f, 0);
-        currentScene = "Core_Level";
+        playerPosition = new Vector3(377.1f, -135.6f, 0);
+        currentScene = "Intro_Level";
     }
 }

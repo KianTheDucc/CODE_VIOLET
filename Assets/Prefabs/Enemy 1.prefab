@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2607702005247349257}
   - component: {fileID: 6473474926694653998}
   - component: {fileID: 8639914415945149331}
+  - component: {fileID: 947544615703568042}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,9 +177,24 @@ MonoBehaviour:
   Alert: {fileID: 2903826639635474076}
   HitBox: {fileID: 4335066428193839975}
   isAlert: 0
-  Player: {fileID: 0}
+  Player: {fileID: 6732873478134030930, guid: 53424a45db27fe742aa955a563501d4a, type: 3}
   speed: 1
   patrolTime: 3
+--- !u!114 &947544615703568042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929151818360893200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a3977dbf188234aa514fe575efdf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curHealth: 0
+  MaxHealth: 10
+  entity: {fileID: 929151818360893200}
 --- !u!1 &4335066428193839975
 GameObject:
   m_ObjectHideFlags: 0

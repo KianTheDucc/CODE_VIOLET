@@ -7,6 +7,11 @@ public class AttackBox : MonoBehaviour
     public bool hit;
     Vector2 pos;
     public GameObject player;
+
+    private Rigidbody2D rb;
+
+    [SerializeField] float knockbackAmount;
+
     Vector2 playerPos;
     public int Damage = 1;
 
@@ -19,6 +24,7 @@ public class AttackBox : MonoBehaviour
 
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == ("Enemy") && hit == false)
@@ -28,12 +34,17 @@ public class AttackBox : MonoBehaviour
             {
                 other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage*2);
                 other.gameObject.GetComponent<EnemyAlert>().damaged();
+                rb = other.gameObject.GetComponent<Rigidbody2D>();
+                rb.AddForce(new Vector2(knockbackAmount, 0), ForceMode2D.Impulse);
+
             }
             else
             {
                 other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+                rb = other.gameObject.GetComponent<Rigidbody2D>();
+
+                rb.AddForce(new Vector2(knockbackAmount, 0), ForceMode2D.Impulse);
             }
-            hit = true;
         }
     }
 

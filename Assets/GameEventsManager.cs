@@ -14,7 +14,9 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one GameEventsManager in the scene.");
+            Debug.Log("Found more than one GameEventsManager in the scene, destroying newest one");
+            Destroy(this);
+            return;
         }
         instance = this;
 

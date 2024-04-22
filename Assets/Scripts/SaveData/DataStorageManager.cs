@@ -70,11 +70,16 @@ public class DataStorageManager : MonoBehaviour
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
 
-        if(SceneManager.GetActiveScene().name == firstLevelName)
+        //Dictionary<string, GameData> profilesGameData = instance.GetAllProfilesGameData();
+
+        //GameData profileData;
+        //profilesGameData.TryGetValue(selectedProfileId, out profileData);
+
+        if (SceneManager.GetActiveScene().name == firstLevelName)
         {
             Invoke("LoadGame", 0.0001f);
         }
-        else
+        else/* if (SceneManager.GetActiveScene().name == profileData.currentScene)*/
         {
             LoadGame();
         }
@@ -167,10 +172,10 @@ public class DataStorageManager : MonoBehaviour
         dataHandler.Save(gameData, selectedProfileId);
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveGame();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGame();
+    //}
 
     List<IDataStorage> FindAllDataPersistenceObjects()
     {

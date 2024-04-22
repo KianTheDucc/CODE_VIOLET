@@ -8,6 +8,10 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject Attack;
     public float damageTime = 1f;
+    [SerializeField] float attackCD;
+
+    public float AttackDamage;
+
     private bool attacking;
 
     // Start is called before the first frame update
@@ -55,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
         Attack.SetActive(true);
         yield return new WaitForSeconds(damageTime);
         Attack.SetActive(false);
+        yield return new WaitForSeconds(attackCD);
         //hit = false;
         attacking = false;
     }
