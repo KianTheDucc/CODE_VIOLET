@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using System;
 
 public class DataStorageManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class DataStorageManager : MonoBehaviour
 
     FileDataHandler dataHandler;
 
-    string selectedProfileId = "";
+    string selectedProfileId = "0";
 
     //Coroutine autoSaveCoroutine;
 
@@ -56,6 +57,12 @@ public class DataStorageManager : MonoBehaviour
         InitializeSelectedProfileId();
     }
 
+
+    private void Start()
+    {
+        Debug.Log(gameData.playerPosition);
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -70,16 +77,16 @@ public class DataStorageManager : MonoBehaviour
     {
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
 
-        //Dictionary<string, GameData> profilesGameData = instance.GetAllProfilesGameData();
+        Dictionary<string, GameData> profilesGameData = instance.GetAllProfilesGameData();
 
-        //GameData profileData;
-        //profilesGameData.TryGetValue(selectedProfileId, out profileData);
+        GameData profileData;
+        profilesGameData.TryGetValue(selectedProfileId, out profileData);
 
         if (SceneManager.GetActiveScene().name == firstLevelName)
         {
             Invoke("LoadGame", 0.0001f);
         }
-        else/* if (SceneManager.GetActiveScene().name == profileData.currentScene)*/
+        else
         {
             LoadGame();
         }
@@ -125,15 +132,30 @@ public class DataStorageManager : MonoBehaviour
     
     public void LoadGame()
     {
-        if (disableDataPersistence)
+       
+            if (disableDataPersistence)
         {
             return;
         }
+        try
+        {
+            this.gameData = dataHandler.Load(selectedProfileId);
 
-        this.gameData = dataHandler.Load(selectedProfileId);
+        }
+        catch(Exception ex) 
+        {
+            Debug.LogError(ex.ToString());
+        }
+
+
+        if (gameData != null)
+        {
+
+        }
 
         if(this.gameData == null && initializeDataIfNull)
         {
+            Debug.Log("There is no data here");
             NewGame();
         }
 
@@ -143,7 +165,7 @@ public class DataStorageManager : MonoBehaviour
             return;
         }
 
-        foreach(IDataStorage dataPersistenceObj in dataPersistenceObjects)
+        foreach (IDataStorage dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);
         }
