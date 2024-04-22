@@ -40,7 +40,11 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     public void LoadData(GameData gameData)
     {
-        playerController.transform.position = gameData.playerPosition;
+        if (gameData.currentScene == SceneManager.GetActiveScene().name)
+        {
+            playerController.transform.position = gameData.playerPosition;
+        }
+
     }
 
     public void SaveData(GameData gameData)

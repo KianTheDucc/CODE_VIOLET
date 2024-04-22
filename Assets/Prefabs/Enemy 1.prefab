@@ -36,7 +36,7 @@ Transform:
   - {fileID: 4753054031472114033}
   - {fileID: 1481912902551658881}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2835515350748232058
 SpriteRenderer:
@@ -177,7 +177,7 @@ MonoBehaviour:
   Alert: {fileID: 2903826639635474076}
   HitBox: {fileID: 4335066428193839975}
   isAlert: 0
-  Player: {fileID: 6732873478134030930, guid: 53424a45db27fe742aa955a563501d4a, type: 3}
+  Player: {fileID: 0}
   speed: 1
   patrolTime: 3
 --- !u!114 &947544615703568042
