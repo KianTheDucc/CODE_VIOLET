@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableDataPersistence: 0
-  initializeDataIfNull: 1
+  initializeDataIfNull: 0
   overrideSelectedProfileId: 0
   testSelectedProfileId: test
   firstLevelName: Intro_Level

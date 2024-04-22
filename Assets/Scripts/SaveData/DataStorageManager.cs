@@ -56,6 +56,7 @@ public class DataStorageManager : MonoBehaviour
         InitializeSelectedProfileId();
     }
 
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
