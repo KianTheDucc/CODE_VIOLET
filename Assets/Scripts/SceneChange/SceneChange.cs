@@ -25,12 +25,15 @@ public class SceneChange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerPrefs.SetString("SpawnLocation", nextSpawnLocationName);
+        if (collision.CompareTag("Player"))
+        {
+            PlayerPrefs.SetString("SpawnLocation", nextSpawnLocationName);
 
-        string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
+            string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
 
-        Debug.Log(spawnLocation);
-        StartCoroutine(fadeBetweenLevels());
+            Debug.Log(spawnLocation);
+            StartCoroutine(fadeBetweenLevels());
+        }
 
     }
 

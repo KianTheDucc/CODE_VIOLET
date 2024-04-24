@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
 
-        //string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
+        string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
 
-        //Debug.Log(spawnLocation);
-        //if (spawnLocation != "none")
-        //    transform.position = GameObject.Find(spawnLocation).transform.position;
+        Debug.Log(spawnLocation);
+        if (spawnLocation != "none")
+            transform.position = GameObject.Find(spawnLocation).transform.position;
     }
     #endregion
 

@@ -20,9 +20,13 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
             Destroy(this);
             return;
         }
-        instance = this;
+        else
+        {
+            instance = this;
 
-        DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this);
+        }
+
     }
 
     private void OnEnable()
@@ -37,15 +41,22 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     void OnSceneLoaded(Scene oldScene, Scene newScene)
     {
-        playerController = FindObjectOfType<PlayerController>();
+        if (newScene.buildIndex != 0)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+        }
         oldscene = oldScene;
+        Time.timeScale = 1;
     }
 
     public void LoadData(GameData gameData)
     {
         if (gameData.currentScene == SceneManager.GetActiveScene().name && oldscene.name != "Core_Level")
         {
-            playerController.transform.position = gameData.playerPosition;
+            if (oldscene.buildIndex == 0)
+            {
+                playerController.transform.position = gameData.playerPosition;
+            }
         }
 
     }
@@ -54,6 +65,10 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
     {
         gameData.currentScene = SceneManager.GetActiveScene().name;
 
-        gameData.playerPosition = playerController.transform.position;
+        if (playerController != null)
+        {
+            gameData.playerPosition = playerController.transform.position;
+        }
+
     }
 }
