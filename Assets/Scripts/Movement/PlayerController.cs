@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     public MovementData Data;
     #endregion
 
-
     #region OnStart
     private void Start()
     {
@@ -31,8 +30,18 @@ public class PlayerController : MonoBehaviour
         string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
 
         Debug.Log(spawnLocation);
-        if (spawnLocation != "none")
-            transform.position = GameObject.Find(spawnLocation).transform.position;
+        if (spawnLocation != "none" && GameEventsManager.instance.oldscene.buildIndex != 0)
+        {
+            print("transporting player");
+
+            StartCoroutine(teleportOnSceneChange(spawnLocation));
+        }
+    }
+
+    private IEnumerator teleportOnSceneChange(string spawnLocation)
+    {
+        yield return new WaitForSeconds(0.002f);
+        transform.position = GameObject.Find(spawnLocation).transform.position;
     }
     #endregion
 

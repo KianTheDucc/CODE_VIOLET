@@ -3,8 +3,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IDataStorage
 {
     public GameObject InventoryMenu;
     private bool menuActivated;
@@ -24,6 +25,38 @@ public class InventoryManager : MonoBehaviour
         {
             InventoryMenu.SetActive(true);
             menuActivated = true;
+        }
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            foreach (var key in gameData.keys)
+            {
+                if (!keyList.Contains(key))
+                {
+                    keyList.Add(key);
+                }
+                print("keyadded1");
+            }
+        }
+
+    }
+    public void SaveData(GameData gameData)
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+
+
+            foreach (var key in keyList)
+            {
+                if (!gameData.keys.Contains(key))
+                {
+                    gameData.keys.Add(key);
+                }
+                print("keyadded2");
+            }
         }
     }
 

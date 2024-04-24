@@ -10,7 +10,13 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     private PlayerController playerController;
 
-    private Scene oldscene;
+    private InventoryManager inventoryManager;
+
+    public List<string> keysCollected;
+
+    public Scene oldscene;
+    private Scene newscene;
+    private Scene FirstScene;
 
     private void Awake()
     {
@@ -26,49 +32,61 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
             DontDestroyOnLoad(this);
         }
-
+        FirstScene = SceneManager.GetSceneByBuildIndex(0);
     }
 
     private void OnEnable()
     {
         SceneManager.activeSceneChanged += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnDisable()
     {
         SceneManager.activeSceneChanged -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
     void OnSceneLoaded(Scene oldScene, Scene newScene)
     {
+        print("sceneloaded");
         if (newScene.buildIndex != 0)
         {
             playerController = FindObjectOfType<PlayerController>();
+            inventoryManager = FindObjectOfType<InventoryManager>();
+            inventoryManager.keyList = keysCollected;   
         }
         oldscene = oldScene;
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+    }
+
+    void OnSceneUnloaded(Scene current)
+    {
+        keysCollected = inventoryManager.keyList;
+        Time.timeScale = 1f;
     }
 
     public void LoadData(GameData gameData)
     {
-        if (gameData.currentScene == SceneManager.GetActiveScene().name && oldscene.name != "Core_Level")
+        if (oldscene == FirstScene && SceneManager.GetActiveScene().buildIndex != 0 && playerController != null && SceneManager.GetActiveScene().name == gameData.currentScene)
         {
-            if (oldscene.buildIndex == 0)
-            {
-                playerController.transform.position = gameData.playerPosition;
-            }
+            playerController.transform.position = gameData.playerPosition;
         }
 
     }
 
     public void SaveData(GameData gameData)
     {
-        gameData.currentScene = SceneManager.GetActiveScene().name;
-
-        if (playerController != null)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            gameData.playerPosition = playerController.transform.position;
+            gameData.currentScene = SceneManager.GetActiveScene().name;
+            if (playerController != null)
+            {
+                gameData.playerPosition = playerController.transform.position;
+            }
         }
+
+
 
     }
 }

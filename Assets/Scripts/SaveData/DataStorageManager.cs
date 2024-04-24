@@ -57,12 +57,6 @@ public class DataStorageManager : MonoBehaviour
         InitializeSelectedProfileId();
     }
 
-
-    private void Start()
-    {
-        Debug.Log(gameData.playerPosition);
-    }
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -80,7 +74,12 @@ public class DataStorageManager : MonoBehaviour
         Dictionary<string, GameData> profilesGameData = instance.GetAllProfilesGameData();
 
         GameData profileData;
-        profilesGameData.TryGetValue(selectedProfileId, out profileData);
+
+        if (selectedProfileId != null)
+        {
+            profilesGameData.TryGetValue(selectedProfileId, out profileData);
+
+        }
 
         if (SceneManager.GetActiveScene().name == firstLevelName)
         {
