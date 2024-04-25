@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System;
 
-public class DataStorageManager : MonoBehaviour
+public class DataStorageManager : MonoBehaviour, IDataStorage
 {
     [Header("Debugging")]
     [SerializeField] bool disableDataPersistence = false;
@@ -24,7 +24,7 @@ public class DataStorageManager : MonoBehaviour
     /*[Header("Auto Saving Configuration")]
     [SerializeField] float autoSaveTimeSeconds = 60f;*/
 
-    GameData gameData;
+    public GameData gameData;
 
     List<IDataStorage> dataPersistenceObjects;
 
@@ -97,6 +97,19 @@ public class DataStorageManager : MonoBehaviour
         autoSaveCoroutine = StartCoroutine(AutoSave());*/
     }
 
+    public void LoadData(GameData gameData)
+    {
+        if (GameEventsManager.instance.oldscene.name == "Main_Menu_Save_Load" && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            SceneManager.LoadSceneAsync(gameData.currentScene);
+        }
+    }
+
+    public void SaveData(GameData gameData)
+    {
+
+    }
+
     public void ChangeSelectedProfileId(string newProfileId)
     {
         this.selectedProfileId = newProfileId;
@@ -124,11 +137,12 @@ public class DataStorageManager : MonoBehaviour
         }
     }
 
+    #region Load,new and save
     public void NewGame()
     {
         this.gameData = new GameData();
     }
-    
+
     public void LoadGame()
     {
        
@@ -192,7 +206,7 @@ public class DataStorageManager : MonoBehaviour
 
         dataHandler.Save(gameData, selectedProfileId);
     }
-
+    #endregion
     //private void OnApplicationQuit()
     //{
     //    SaveGame();

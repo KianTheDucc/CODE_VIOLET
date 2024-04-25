@@ -36,7 +36,7 @@ public class SaveSlotsMenu : Menu
 
 
         // load the scene - which will in turn save the game because of OnSceneUnloaded() in the DataPersistenceManager
-        SceneManager.LoadSceneAsync(DataStorageManager.instance.firstLevelName);
+        SceneManager.LoadSceneAsync(DataStorageManager.instance.gameData.currentScene);
     }
 
     public void OnClearClicked(SaveSlot saveSlot)

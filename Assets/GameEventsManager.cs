@@ -62,7 +62,11 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     void OnSceneUnloaded(Scene current)
     {
-        keysCollected = inventoryManager.keyList;
+        if (inventoryManager != null)
+        {
+            keysCollected = inventoryManager.keyList;
+        }
+
         Time.timeScale = 1f;
     }
 
