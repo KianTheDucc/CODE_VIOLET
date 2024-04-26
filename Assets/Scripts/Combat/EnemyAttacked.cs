@@ -6,9 +6,7 @@ public class EnemyHit : MonoBehaviour
 {
     public float EnemyHealth;
     public float MaxHealth;
-
     public float knockbackAmount;
-
     [SerializeField] GameObject Enemy;
     private Rigidbody2D rb;
 
@@ -30,9 +28,9 @@ public class EnemyHit : MonoBehaviour
 
     public void DamageEnemy(float damage)
     {
+
         EnemyHealth -= damage;
         Debug.Log("Damaged");
-        rb.AddForce(new Vector2(knockbackAmount, 0));
         Debug.Log("Knocked back");
     }
 

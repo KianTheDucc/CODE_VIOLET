@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject Attack;
     public float damageTime = 1f;
     [SerializeField] float attackCD;
+    public float attackDirection;
 
     public float AttackDamage;
 
@@ -37,11 +38,13 @@ public class PlayerAttack : MonoBehaviour
 
         if (input.x == -1 || input.x == 0 && input.y == 0 &&  GetComponent<SpriteRenderer>().flipX)
         {
+            attackDirection = -1;
             Attack.transform.position = new Vector3(transform.position.x - 1.5f,transform.position.y, transform.position.z);
             Attack.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 90);
         }
         else if (input.x == 1 || input.x == 0 && input.y == 0 && !GetComponent<SpriteRenderer>().flipX)
         {
+            attackDirection = 1;
             Attack.transform.position = new Vector3(transform.position.x + 1.5f, transform.position.y, transform.position.z);
             Attack.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, -90);
         }

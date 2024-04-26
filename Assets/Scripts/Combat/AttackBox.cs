@@ -27,6 +27,7 @@ public class AttackBox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Vector2 knockback = new Vector2(knockbackAmount * GameObject.Find("Player").GetComponent<PlayerAttack>().attackDirection, 0);
         if (other.tag == ("Enemy") && hit == false)
         {
             Debug.Log("Enemy hit");
@@ -35,7 +36,7 @@ public class AttackBox : MonoBehaviour
                 other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage*2);
                 other.gameObject.GetComponent<EnemyAlert>().damaged();
                 rb = other.gameObject.GetComponent<Rigidbody2D>();
-                rb.AddForce(new Vector2(knockbackAmount, 0), ForceMode2D.Impulse);
+                rb.AddForce(knockback, ForceMode2D.Impulse);
 
             }
             else
@@ -43,7 +44,7 @@ public class AttackBox : MonoBehaviour
                 other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
                 rb = other.gameObject.GetComponent<Rigidbody2D>();
 
-                rb.AddForce(new Vector2(knockbackAmount, 0), ForceMode2D.Impulse);
+                rb.AddForce(knockback, ForceMode2D.Impulse);
             }
         }
     }
