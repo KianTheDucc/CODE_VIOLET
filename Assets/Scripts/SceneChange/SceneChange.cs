@@ -19,6 +19,7 @@ public class SceneChange : MonoBehaviour
     private void Start()
     {
         GameObject.FindGameObjectWithTag("Player");
+
         sceneChangeTrigger = GameObject.Find("BlackFade");
 
         if (sceneChangeTrigger != null)
@@ -50,7 +51,10 @@ public class SceneChange : MonoBehaviour
     public IEnumerator fadeBetweenLevels()
     {
         AsyncOperation asyncLevelLoad = SceneManager.LoadSceneAsync(nextSceneName); // So the script knows which level to transition to
-        animator.SetTrigger("FadeOut"); // Triggers the relevant animation
+        if (animator != null)
+        {
+            animator.SetTrigger("FadeOut"); // Triggers the relevant animation
+        }
 
         string spawnLocation = PlayerPrefs.GetString("SpawnLocation");
 
