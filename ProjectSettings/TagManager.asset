@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - Collector
   - Boss
+  - hazardRespawn
   layers:
   - Default
   - TransparentFX

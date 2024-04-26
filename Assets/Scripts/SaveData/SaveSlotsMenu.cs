@@ -24,18 +24,38 @@ public class SaveSlotsMenu : Menu
         DisableMenuButtons();
 
         // update the selected profile id to be used for data persistence
-        DataStorageManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+
 
         if (!isLoadingGame)
         {
-            // create a new game - which will initialize our data to a clean slate
+            DataStorageManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+
             DataStorageManager.instance.NewGame();
+            // create a new game - which will initialize our data to a clean slate
+            SaveGameAndLoadSceneNewGame();
+        }
+        else
+        {
+            DataStorageManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+
+            SaveGameAndLoadSceneLoadGame();
         }
 
-            DataStorageManager.instance.SaveGame();
 
 
         // load the scene - which will in turn save the game because of OnSceneUnloaded() in the DataPersistenceManager
+        SceneManager.LoadSceneAsync(DataStorageManager.instance.gameData.currentScene);
+    }
+
+    private void SaveGameAndLoadSceneNewGame()
+    {
+        DataStorageManager.instance.SaveGame();
+        SceneManager.LoadSceneAsync(DataStorageManager.instance.firstLevelName);
+    }
+
+    private void SaveGameAndLoadSceneLoadGame()
+    {
+        DataStorageManager.instance.SaveGame();
         SceneManager.LoadSceneAsync(DataStorageManager.instance.gameData.currentScene);
     }
 

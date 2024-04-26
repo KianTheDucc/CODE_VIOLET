@@ -48,9 +48,11 @@ public class MainMenu : MonoBehaviour
     {
         DisableMenuButtons();
 
+        
+
         DataStorageManager.instance.SaveGame();
 
-        SceneManager.LoadSceneAsync(DataStorageManager.instance.firstLevelName);
+        SceneManager.LoadSceneAsync(DataStorageManager.instance.gameData.currentScene);
     }
 
     public void OnQuitButtonClicked()

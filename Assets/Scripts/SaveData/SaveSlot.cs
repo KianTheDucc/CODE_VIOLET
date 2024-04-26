@@ -9,7 +9,7 @@ public class SaveSlot : MonoBehaviour
 
     [Header("Content")] 
     [SerializeField] private GameObject noDataContent;
-    [SerializeField] private GameObject hasDataContent;
+    [SerializeField] public GameObject hasDataContent;
     [SerializeField] private TextMeshProUGUI saveName;
 
 

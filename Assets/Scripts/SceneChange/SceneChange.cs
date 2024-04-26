@@ -20,7 +20,11 @@ public class SceneChange : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player");
         sceneChangeTrigger = GameObject.Find("BlackFade");
-        animator = sceneChangeTrigger.GetComponent<Animator>();
+
+        if (sceneChangeTrigger != null)
+        { 
+            animator = sceneChangeTrigger.GetComponent<Animator>(); 
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,7 +60,7 @@ public class SceneChange : MonoBehaviour
         {
             yield return null;
         }
-
+        print("runs");
         Player.transform.position = GameObject.Find(spawnLocation).transform.position;
         yield return null;
     }

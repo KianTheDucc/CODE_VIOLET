@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer Player;
 
     public MovementData Data;
+
+    public GameObject GroundCheck;
     #endregion
 
     #region OnStart
@@ -390,9 +392,10 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-
+  
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Data.groundcastDistance, Data.whatIsGround);
-        return hit.collider != null;
+
+        return Physics2D.OverlapBox(GroundCheck.transform.position, new Vector2(1, 1), 0f, Data.whatIsGround);
     }
 
     public bool IsWallJumpWall()

@@ -72,8 +72,10 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
 
     public void LoadData(GameData gameData)
     {
-        if (oldscene == FirstScene && SceneManager.GetActiveScene().buildIndex != 0 && playerController != null && SceneManager.GetActiveScene().name == gameData.currentScene)
+        print("LoadData Runs");
+        if (SceneManager.GetActiveScene().buildIndex != 0 && playerController != null)
         {
+            print("loading position from save");
             playerController.transform.position = gameData.playerPosition;
         }
 
@@ -86,6 +88,7 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
             gameData.currentScene = SceneManager.GetActiveScene().name;
             if (playerController != null)
             {
+
                 gameData.playerPosition = playerController.transform.position;
             }
         }
