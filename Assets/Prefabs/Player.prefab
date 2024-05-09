@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -212,7 +212,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   PlayerBody: {fileID: 8058714858480825155}
   Player: {fileID: 377815706503810411}
   Data: {fileID: 11400000, guid: e9637eecea3945d49aa8318640092619, type: 2}
+  GroundCheck: {fileID: 0}
 --- !u!114 &4533990608726808419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +355,7 @@ MonoBehaviour:
   Attack: {fileID: 1556864253192931463}
   damageTime: 1
   attackCD: 0
+  attackDirection: 0
   AttackDamage: 0
 --- !u!114 &1613472536959930902
 MonoBehaviour:
@@ -385,6 +387,7 @@ MonoBehaviour:
   Attack: {fileID: 1556864253192931463}
   damageTime: 0.2
   attackCD: 0.2
+  attackDirection: 0
   AttackDamage: 0
 --- !u!114 &7059002395997715891
 MonoBehaviour:
