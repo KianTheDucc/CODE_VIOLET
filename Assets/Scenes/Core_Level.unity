@@ -37356,6 +37356,10 @@ PrefabInstance:
       value: -0.0124
       objectReference: {fileID: 0}
     - target: {fileID: 2479353648926520164, guid: 53424a45db27fe742aa955a563501d4a, type: 3}
+      propertyPath: playerAnim
+      value: 
+      objectReference: {fileID: 611496733}
+    - target: {fileID: 2479353648926520164, guid: 53424a45db27fe742aa955a563501d4a, type: 3}
       propertyPath: GroundCheck
       value: 
       objectReference: {fileID: 102311330}
