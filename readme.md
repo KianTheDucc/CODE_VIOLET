@@ -37,6 +37,7 @@ https://www.youtube.com/watch?v=aUi9aijvpgs&list=PL3viUl9h9k7-tMGkSApPdu4hlUBagK
 Credit to https://www.youtube.com/@NightRunStudio for his Inventory System Tutorial series. (InventoryManager.cs, Item.cs, ItemSlot.cs)
 
 Pause Menu influenced and assisted by https://youtu.be/DX7HyN7oJjE?si=FngSYQ13ptQCkPNZ
+
 Main menu with help from https://youtu.be/9dYDBomQpBQ?si=eAgG3Gzj2yzck_T7
 
 Credit to https://opengameart.org/content/platformer-animations for player character sprite pose references 
