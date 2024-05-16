@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d11a438a5977c2045a381891b68aebcc
+guid: 6f95375a6fb41204a868609175891250
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CV_Char_0
+      name: CV_Player_0
       rect:
         serializedVersion: 2
         x: 128
-        y: 519
+        y: 520
         width: 64
-        height: 66
+        height: 63
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1a0fa8396d4ca94d874b59a68f3ed72
-      internalID: 1770957772
+      spriteID: 30ce1b444898c994cb89fa8475fce754
+      internalID: 1795052392
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_1
+      name: CV_Player_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 521
+        y: 524
         width: 64
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3489d912dd9090141b17c9f8bd8868cb
-      internalID: -677036740
+      spriteID: df0f88c4532935645875f7ff13332e52
+      internalID: 1782364948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_2
+      name: CV_Player_2
       rect:
         serializedVersion: 2
         x: 320
-        y: 521
+        y: 524
         width: 64
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dda96d2a0ee2a114abc78b5b9c5e0f71
-      internalID: 58759674
+      spriteID: 03619aa164a2d1543817c6d43bc2b934
+      internalID: -1368218070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_3
+      name: CV_Player_3
       rect:
         serializedVersion: 2
         x: 384
-        y: 521
+        y: 524
         width: 64
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a735aa2e3f66d6f45acfca6bd562712b
-      internalID: 1602919061
+      spriteID: c159645fdc8b68f40ad24a5e50204fd1
+      internalID: 171087404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_4
+      name: CV_Player_4
       rect:
         serializedVersion: 2
         x: 448
-        y: 521
+        y: 522
         width: 64
-        height: 64
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52cc6350f3d088c428fad6ef325ec5a4
-      internalID: -1218907561
+      spriteID: 8cfb859d80056824099fb3dc156541c2
+      internalID: -1788855519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_5
+      name: CV_Player_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 457
+        y: 459
         width: 64
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,38 +229,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98f442683af1e9d4aa4fb871b3bfa376
-      internalID: -631015969
+      spriteID: 89a7adb1243e4ed4e83680f219e3563d
+      internalID: 1794105757
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_6
+      name: CV_Player_6
       rect:
         serializedVersion: 2
         x: 64
-        y: 457
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 363d477261a1b274fb898aa977c7080e
-      internalID: -519342707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CV_Char_7
-      rect:
-        serializedVersion: 2
-        x: 128
         y: 457
         width: 64
         height: 62
@@ -271,19 +250,82 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24184b9353a09204babce8a5d616e3bf
-      internalID: -776419963
+      spriteID: 61d364ac0875a984b9d5d5243934c4d3
+      internalID: 474279146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_8
+      name: CV_Player_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 457
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43a4112d81d81bc4783948ccc917b4a0
+      internalID: -120454253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_8
       rect:
         serializedVersion: 2
         x: 192
         y: 457
         width: 64
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ac427d79830164aac19401b84d1e91
+      internalID: 437477478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 456
+        width: 79
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15927b46e61a4c54b9923dd3b83ecd1a
+      internalID: -869498793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_10
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 457
+        width: 43
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -292,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e96bf1fe4292a84c81434327cec59d6
-      internalID: -1323066204
+      spriteID: a911eaf8c163aaf4c907695552fbe081
+      internalID: 1032326599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CV_Char_9
+      name: CV_Player_11
       rect:
         serializedVersion: 2
         x: 64
@@ -313,8 +355,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cabc265373f11c43a623c3e64daf706
-      internalID: 2101215864
+      spriteID: 64877a437cfbd1f47a568a5417280931
+      internalID: -106532581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 393
+        width: 64
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58f04c8b95ffa444c97c5da7437fc90f
+      internalID: 691354976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 265
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2728aa699343c114884dfa3e0439c304
+      internalID: -1785493997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 201
+        width: 64
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a974135c81e2fa408733d8b7364e21f
+      internalID: -1281422545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 201
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05997d646d80d2844a739cf2f865d249
+      internalID: -1290302419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 201
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b357770dd1f76dc4ebb46a85f25eafb8
+      internalID: -310513829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_17
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 201
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8e7a1b81a96aa4888bae2e78064ad3
+      internalID: 1303865209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CV_Player_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 137
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33de0acdd37e7c4bb3059efbef2d957
+      internalID: -207539873
       vertices: []
       indices: 
       edges: []
@@ -330,16 +519,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CV_Char_0: 1770957772
-      CV_Char_1: -677036740
-      CV_Char_2: 58759674
-      CV_Char_3: 1602919061
-      CV_Char_4: -1218907561
-      CV_Char_5: -631015969
-      CV_Char_6: -519342707
-      CV_Char_7: -776419963
-      CV_Char_8: -1323066204
-      CV_Char_9: 2101215864
+      CV_Player_0: 1795052392
+      CV_Player_1: 1782364948
+      CV_Player_10: 1032326599
+      CV_Player_11: -106532581
+      CV_Player_12: 691354976
+      CV_Player_13: -1785493997
+      CV_Player_14: -1281422545
+      CV_Player_15: -1290302419
+      CV_Player_16: -310513829
+      CV_Player_17: 1303865209
+      CV_Player_18: -207539873
+      CV_Player_2: -1368218070
+      CV_Player_3: 171087404
+      CV_Player_4: -1788855519
+      CV_Player_5: 1794105757
+      CV_Player_6: 474279146
+      CV_Player_7: -120454253
+      CV_Player_8: 437477478
+      CV_Player_9: -869498793
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
