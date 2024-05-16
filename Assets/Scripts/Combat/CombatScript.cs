@@ -45,23 +45,25 @@ public class CombatScript : MonoBehaviour
                 // death screen
                 break;
             case 1:
-                GameObject.Find("health_3").GetComponent<SpriteRenderer>().color = Color.yellow;
+                GameObject.Find("Health 1H").SetActive(true);
                 // one bar is left on orange
                 break;
             case 2:
-                GameObject.Find("health_2").GetComponent<SpriteRenderer>().color = Color.red;
+                GameObject.Find("Health 2H").SetActive(false);
                 // one bar is white
                 break;
             case 3:
-                GameObject.Find("health_2").GetComponent<SpriteRenderer>().color = Color.yellow;
+                GameObject.Find("Health 2").SetActive(false);
+                GameObject.Find("Health 2H").SetActive(true);
                 // one bar is left white and the other turned orange
                 break;
             case 4:
-                GameObject.Find("health_1").GetComponent<SpriteRenderer>().color = Color.red;
+                GameObject.Find("Health 3H").SetActive(false);
                 // two bars are white one is red
                 break;
             case 5:
-                GameObject.Find("health_1").GetComponent<SpriteRenderer>().color = Color.yellow;
+                GameObject.Find("Health 3").SetActive(false);
+                GameObject.Find("Health 3H").SetActive(true);
                 // two bars are white one is orange
                 break;
             default: break;
