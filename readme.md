@@ -25,6 +25,7 @@ left mouse - attack
 i - inventory
 
 esc - open menu
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This project was created for Unity [2022.3.2f1](https://download.unity3d.com/download_unity/d74737c6db50/Windows64EditorInstaller/UnitySetup64-2022.3.2f1.exe)
 
