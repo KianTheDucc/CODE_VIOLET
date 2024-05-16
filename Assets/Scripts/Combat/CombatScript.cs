@@ -11,6 +11,9 @@ public class CombatScript : MonoBehaviour
     void Start()
     {
         curHealth = MaxHealth;
+        GameObject.Find("Health 1H").SetActive(false);
+        GameObject.Find("Health 2H").SetActive(false);
+        GameObject.Find("Health 3H").SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class CombatScript : MonoBehaviour
                 break;
             case 1:
                 GameObject.Find("Health 1H").SetActive(true);
+                GameObject.Find("Health 1").SetActive(false);
                 // one bar is left on orange
                 break;
             case 2:
