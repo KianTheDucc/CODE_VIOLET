@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     
     [SerializeField] SaveSlotsMenu saveSlotsmenu;
 
+    public GameObject title;
+
     [Header("Menu Buttons")]
 
     [SerializeField] private Button newGameButton;
@@ -69,11 +71,14 @@ public class MainMenu : MonoBehaviour
     public void ActivateMenu()
     {
         this.gameObject.SetActive(true);
+        title.SetActive(true);
         DisableButtonsDependingOnData();
     }
 
     public void DeactivateMenu()
     {
         this.gameObject.SetActive(false);
+        title.SetActive(false);
     }
+
 }
