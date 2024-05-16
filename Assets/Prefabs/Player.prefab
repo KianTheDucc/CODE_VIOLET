@@ -190,7 +190,7 @@ Transform:
   m_Children:
   - {fileID: 1182108178710628824}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &377815706503810411
 SpriteRenderer:
@@ -320,6 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerBody: {fileID: 8058714858480825155}
   Player: {fileID: 377815706503810411}
+  playerAnim: {fileID: 0}
   Data: {fileID: 11400000, guid: e9637eecea3945d49aa8318640092619, type: 2}
   GroundCheck: {fileID: 0}
 --- !u!114 &4533990608726808419
@@ -347,7 +348,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6732873478134030930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0959f1b57a04e741af7f8bbfa00f127, type: 3}
   m_Name: 
