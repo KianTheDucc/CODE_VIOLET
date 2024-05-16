@@ -3,17 +3,27 @@
 CODE VIOLET is a cyberpunk metroidvania set in a hyper-futuristic version of Earth.
 
 The city is under attack.
+
 They are attacking and disrupting our utopia.
+
 Your job is to remove the resistance.
+
 Your job is to eliminate.
+
 Your job is to listen and do.
+
 Keep your visor on, it’s a CODE VIOLET!
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 a/left arrow key - left movement
+
 d/right arrow key - right movement
+
 spacebar- jump
+
 left mouse - attack
+
 i - inventory
+
 esc - open menu
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This project was created for Unity [2022.3.2f1](https://download.unity3d.com/download_unity/d74737c6db50/Windows64EditorInstaller/UnitySetup64-2022.3.2f1.exe)
