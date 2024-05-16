@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer Player;
 
+    public Animator playerAnim;
+
     public MovementData Data;
 
     public GameObject GroundCheck;
@@ -51,6 +53,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (rb.velocity.x != 0)
+        {
+            playerAnim.SetBool("IsRunning", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsRunning", false);
+        }
         if (!Data.dashing)
         {
             Movement(1);
@@ -69,6 +79,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -Data.maxFallSpeed));
         }
         CoyoteTime();
+
+
 
         if (IsGrounded())
         {
@@ -122,8 +134,6 @@ public class PlayerController : MonoBehaviour
     private void Movement(float lerpAmount)
     {
         float xDir = Input.GetAxisRaw("Horizontal");
-
-
 
         if (IsGrounded())
         {
