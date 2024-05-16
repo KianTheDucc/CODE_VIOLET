@@ -4,7 +4,7 @@ CODE VIOLET is a cyberpunk metroidvania set in a hyper-futuristic version of Ear
 
 The city is under attack.
 They are attacking and disrupting our utopia.
-Your job i to remove the resistance.
+Your job is to remove the resistance.
 Your job is to eliminate.
 Your job is to listen and do.
 Keep your visor on, it’s a CODE VIOLET!
