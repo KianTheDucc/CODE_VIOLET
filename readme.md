@@ -1,6 +1,7 @@
 ### CODE VIOLET ### 
 
 CODE VIOLET is a cyberpunk metroidvania set in a hyper-futuristic version of Earth.
+The player plays as a soldier sent on a mission to protect the city, dealing with a raid in a specific building.
 
 The city is under attack.
 
@@ -28,8 +29,6 @@ esc - open menu
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This project was created for Unity [2022.3.2f1](https://download.unity3d.com/download_unity/d74737c6db50/Windows64EditorInstaller/UnitySetup64-2022.3.2f1.exe)
-
-It is a 2d hyperfuturistic metroidvania with the main character being a cyborg soldier.
 
 Save and load system heavily inspired by ShapedByRainStudios
 https://www.youtube.com/watch?v=aUi9aijvpgs&list=PL3viUl9h9k7-tMGkSApPdu4hlUBagKial
