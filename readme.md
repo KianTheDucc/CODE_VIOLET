@@ -1,6 +1,7 @@
 ### CODE VIOLET ### 
 
 CODE VIOLET is a cyberpunk metroidvania set in a hyper-futuristic version of Earth.
+The player plays as a soldier sent on a mission to protect the city, dealing with a raid in a specific building.
 
 The city is under attack.
 
