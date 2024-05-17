@@ -18,9 +18,7 @@ public class CombatScript : MonoBehaviour
     void Start()
     {
         curHealth = MaxHealth;
-        //GameObject.Find("Health 1H").SetActive(false);
-        //GameObject.Find("Health 2H").SetActive(false);
-        //GameObject.Find("Health 3H").SetActive(false);
+
 
         Health1H.SetActive(false);
         Health2H.SetActive(false);
@@ -49,7 +47,7 @@ public class CombatScript : MonoBehaviour
         curHealth -= damage;
         healthBarChange();
     }
-
+    //changes the health bar state
     public void healthBarChange()
     {
         switch(curHealth)
@@ -61,33 +59,25 @@ public class CombatScript : MonoBehaviour
             case 1:
                 Health1H.SetActive(true);
                 Health1.SetActive(false);
-                //GameObject.Find("Health 1H").SetActive(true);
-                //GameObject.Find("Health 1").SetActive(false);
-                // one bar is left on orange
+
                 break;
             case 2:
                 Health2H.SetActive(false);
-                //GameObject.Find("Health 2H").SetActive(false);
-                // one bar is white
+
                 break;
             case 3:
                 Health2.SetActive(false);
                 Health2H.SetActive(true);
-                //GameObject.Find("Health 2").SetActive(false);
-                //GameObject.Find("Health 2H").SetActive(true);
-                // one bar is left white and the other turned orange
+
                 break;
             case 4:
                 Health3H.SetActive(false);
-                //GameObject.Find("Health 3H").SetActive(false);
-                // two bars are white one is red
+
                 break;
             case 5:
                 Health3.SetActive(false);
                 Health3H.SetActive(true);
-                //GameObject.Find("Health 3").SetActive(false);
-                //GameObject.Find("Health 3H").SetActive(true);
-                // two bars are white one is orange
+
                 break;
             default: break;
 
