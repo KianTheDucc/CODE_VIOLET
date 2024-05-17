@@ -44,3 +44,5 @@ Pause Menu influenced and assisted by https://youtu.be/DX7HyN7oJjE?si=FngSYQ13pt
 Main menu with help from https://youtu.be/9dYDBomQpBQ?si=eAgG3Gzj2yzck_T7
 
 Credit to https://opengameart.org/content/platformer-animations for player character sprite pose references 
+
+Music By Kian Burns using Logic Pro and FL studio built in VSTS.
