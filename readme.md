@@ -23,6 +23,8 @@ spacebar- jump
 
 left mouse - attack
 
+g - save on yellow dots
+
 i - inventory
 
 esc - open menu
