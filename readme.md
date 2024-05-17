@@ -1,5 +1,7 @@
 ### CODE VIOLET ### 
 
+https://es294335.itch.io/codeviolet
+
 CODE VIOLET is a cyberpunk metroidvania set in a hyper-futuristic version of Earth.
 The player plays as a soldier sent on a mission to protect the city, dealing with a raid in a specific building.
 
@@ -22,8 +24,6 @@ d/right arrow key - right movement
 spacebar- jump
 
 left mouse - attack
-
-g - save on yellow dots
 
 i - inventory
 
