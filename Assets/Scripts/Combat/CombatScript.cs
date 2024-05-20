@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CombatScript : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class CombatScript : MonoBehaviour
         {
             case 0:
 
-                // death screen
+                SceneManager.LoadSceneAsync("Main_Menu_Save_Load");
                 break;
             case 1:
                 Health1H.SetActive(true);

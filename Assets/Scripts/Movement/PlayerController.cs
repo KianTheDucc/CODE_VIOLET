@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
             //Resets gravity if on the ground
             rb.gravityScale = 1;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
+            playerAnim.SetBool("IsJumping", false);
         }
 
 
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
             Data.jumping = false;
             Data.hasJumped = false;
             GetComponent<KnockbackWorking>().hasWallJumped = false;
+
         }
 
         if (!IsAgainstWallLeft() && !IsAgainstWallRight() && !GetComponent<KnockbackWorking>().isKnockedBack && !IsWallJumpWallLeft() && !IsWallJumpWallRight())
@@ -289,6 +291,7 @@ public class PlayerController : MonoBehaviour
 
                 rb.velocity = new Vector2(rb.velocity.x, Data.jumpforce);
                 Data.hasJumped = true;
+                playerAnim.SetBool("IsJumping", true);
 
             }
         }

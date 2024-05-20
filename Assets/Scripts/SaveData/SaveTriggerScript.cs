@@ -16,12 +16,17 @@ public class SaveTriggerScript : MonoBehaviour
         
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (Input.GetButton("Save"))
+    //    {
+    //        DataStorageManager.instance.SaveGame();
+    //        Debug.Log("Saved");
+    //    }
+    //}
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Input.GetButton("Save"))
-        {
-            DataStorageManager.instance.SaveGame();
-            Debug.Log("Saved");
-        }
+        DataStorageManager.instance.SaveGame();
+        Debug.Log("Saved");
     }
 }
