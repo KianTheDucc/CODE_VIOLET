@@ -43,6 +43,7 @@ MonoBehaviour:
   groundcastDistance: 0.7
   kbcastDistance: 1.5
   WJcastDistance: 0.7
+  WJcastDistance: 1.5
   hasJumped: 0
   jumping: 0
   InitialPlayerYHeight: -21.93473
