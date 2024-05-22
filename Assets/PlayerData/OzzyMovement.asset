@@ -42,17 +42,16 @@ MonoBehaviour:
   wallJumpY: 30
   groundcastDistance: 0.7
   kbcastDistance: 1.5
-  WJcastDistance: 0.7
   WJcastDistance: 1.5
   hasJumped: 0
   jumping: 0
-  InitialPlayerYHeight: -21.93473
-  MaxJumpHeight: -16.93473
+  InitialPlayerYHeight: -333.14432
+  MaxJumpHeight: -328.14432
   dashing: 0
   canDash: 0
   canWallJump: 1
   latchedToWall: 0
   isWallJumping: 0
   WallJumpCooldown: 0
-  LastOnGroundTime: 0.25
-  LastOnWallTime: -2.4932215
+  LastOnGroundTime: 0.1
+  LastOnWallTime: -10.612781
