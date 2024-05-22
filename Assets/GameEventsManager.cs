@@ -50,7 +50,7 @@ public class GameEventsManager : MonoBehaviour, IDataStorage
     void OnSceneLoaded(Scene oldScene, Scene newScene)
     {
         print("sceneloaded");
-        if (newScene.buildIndex != 0)
+        if (newScene.buildIndex != 0 && newscene.name != "EndScene")
         {
             playerController = FindObjectOfType<PlayerController>();
             inventoryManager = FindObjectOfType<InventoryManager>();
